@@ -4,6 +4,4 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-export const Button: FC<ButtonProps> = ({ children }) => (
-  <button>{children}</button>
-);
+export const Button: FC<ButtonProps> = () => <button>{'hello'}</button>;
