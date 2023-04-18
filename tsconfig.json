@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
@@ -23,5 +26,5 @@
     "strictNullChecks": false
   },
   "include": ["**/*.ts", "src/**/*", "cypress/**/*"],
-  "extends": "./tsconfig.paths.json",
+  "extends": "./tsconfig.paths.json"
 }

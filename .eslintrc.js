@@ -3,17 +3,18 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: 'module',
-    project: "./tsconfig.json",
-    tsconfigRootDir: "./"
+    project: './tsconfig.json',
+    tsconfigRootDir: './',
   },
   settings: {
     react: {
       version: 'detect',
     },
     'import/resolver': {
-       "node": {
-      "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+      typescript: {},
     },
   },
   extends: [
@@ -27,7 +28,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    'prettier'
+    'prettier',
   ],
   rules: {
     '@typescript-eslint/no-unused-vars': ['error'],
@@ -39,17 +40,20 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/no-unsafe-member-access': 'off',
-    '@typescript-eslint/no-unsafe-return':'off',
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
-    "simple-import-sort/imports": ["error", {
-      groups: [
-        ["^react | <THIRD_PARTY_MODULES>"],
-        ["^@?\\w"],
-        ["@/(.*)"],
-        ["^[./]"]
-      ]
-    }]     
+    '@typescript-eslint/no-unsafe-return': 'off',
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+    'simple-import-sort/imports': [
+      'error',
+      {
+        groups: [
+          ['^react | <THIRD_PARTY_MODULES>'],
+          ['^@?\\w'],
+          ['@/(.*)'],
+          ['^[./]'],
+        ],
+      },
+    ],
   },
-  plugins: ['@typescript-eslint',"simple-import-sort"],
+  plugins: ['@typescript-eslint', 'simple-import-sort'],
 };
