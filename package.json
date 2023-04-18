@@ -1,9 +1,10 @@
 {
-  "name": "@deborodina/calendar-library",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/deborodina"
+  "name": "react-typescript-date-picker",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DEBorodina/calendar-library"
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "dist/esm/index.js",
   "module": "dist/cjs/index.js",
