@@ -21,5 +21,7 @@
     "noEmit": true,
     "jsx": "react",
     "strictNullChecks": false
-  }
+  },
+  "include": ["**/*.ts", "src/**/*", "cypress/**/*"],
+  "extends": "./tsconfig.paths.json",
 }
