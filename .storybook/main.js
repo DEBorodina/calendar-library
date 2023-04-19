@@ -17,6 +17,10 @@ const config = {
     builder: 'webpack5',
   },
   webpackFinal: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': path.resolve(__dirname, '../src'),
+    };
     config.resolve.modules = [...(config.resolve.modules || []), './src'];
     config.module.rules = [
       ...(config.module.rules || []),
