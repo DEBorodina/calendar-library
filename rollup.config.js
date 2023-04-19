@@ -10,6 +10,7 @@ const nodeResolve = require('@rollup/plugin-node-resolve');
 const externals = require('rollup-plugin-node-externals');
 const replacement = require('rollup-plugin-module-replacement');
 const resolve = require('rollup-plugin-node-resolve');
+const peerDepsExternal = require('rollup-plugin-peer-deps-external');
 const path = require('path');
 
 const customResolver = resolve({
@@ -24,13 +25,15 @@ module.exports = [
       {
         file: packageJson.module,
         format: 'cjs',
+        interop: 'auto',
       },
       {
         file: packageJson.main,
         format: 'esm',
+        interop: 'auto',
       },
     ],
-    external: ['react'],
+    external: ['react', 'styled-components'],
     plugins: [
       typescript({
         tsconfig: './tsconfig.json',
@@ -63,6 +66,7 @@ module.exports = [
         customResolver
       ),
       resolve(),
+      peerDepsExternal(),
     ],
   },
   {
