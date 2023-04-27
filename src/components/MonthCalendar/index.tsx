@@ -11,6 +11,9 @@ export const MonthCalendar: React.FC<MonthCalendarProps> = ({
   value,
   onChange,
 }) => {
+  const [panelYear, setPanelYear] = useState(value.getFullYear());
+  const [panelMonth, setPanelMonth] = useState(value.getMonth());
+
   const handlePreviousMonth = () => {
     if (panelMonth == 0) {
       setPanelMonth(11);
@@ -24,9 +27,6 @@ export const MonthCalendar: React.FC<MonthCalendarProps> = ({
       setPanelYear(panelYear + 1);
     } else setPanelMonth(panelMonth + 1);
   };
-
-  const [panelYear, setPanelYear] = useState(value.getFullYear());
-  const [panelMonth, setPanelMonth] = useState(value.getMonth());
 
   useLayoutEffect(() => {
     setPanelYear(value.getFullYear());

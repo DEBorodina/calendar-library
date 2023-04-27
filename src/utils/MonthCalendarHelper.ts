@@ -1,7 +1,7 @@
 import { CalendarHelper } from './CalendarHelper';
 
 export class MonthCalendarHelper {
-  static getCurrentMonthDays = (year: number, month: number) => {
+  static getCurrentMonthDays = (year: number, month: number): Date[] => {
     const dateCells: Date[] = [];
 
     const currentMonthDaysAmount = CalendarHelper.getNumberOfDaysInMonth(
@@ -16,7 +16,7 @@ export class MonthCalendarHelper {
     return dateCells;
   };
 
-  static getPreviousMonthDays = (year: number, month: number) => {
+  static getPreviousMonthDays = (year: number, month: number): Date[] => {
     const currentMonthFirstDay = new Date(year, month, 1).getDay();
     const dateCells: Date[] = [];
 
@@ -26,7 +26,7 @@ export class MonthCalendarHelper {
     return dateCells;
   };
 
-  static getNextMonthDays = (year: number, month: number) => {
+  static getNextMonthDays = (year: number, month: number): Date[] => {
     const previousMonthCellsAmount = new Date(year, month, 1).getDay();
     const currentMonthDaysAmount = CalendarHelper.getNumberOfDaysInMonth(
       year,

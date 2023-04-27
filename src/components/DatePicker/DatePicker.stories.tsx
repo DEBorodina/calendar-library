@@ -13,5 +13,10 @@ type Story = StoryObj<typeof DatePicker>;
 
 export const Primary: Story = {
   name: 'Month Calendar',
-  render: () => <DatePicker defaultValue={new Date(Date.now())} />,
+  render: () => (
+    <DatePicker
+      defaultValue={new Date(Date.now())}
+      onChange={(date) => console.log(date)}
+    />
+  ),
 };

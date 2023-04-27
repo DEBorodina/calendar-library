@@ -25,14 +25,19 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     DateFormatter.getInputValueFromDate(defaultValue)
   );
 
-  const handleChange = (inputValue: string) => {
+  const handleChange = (date: Date) => {
+    setValue(date);
+    onChange(date);
+  };
+
+  const handleChangeInput = (inputValue: string) => {
     setCurrentValue(inputValue.trim());
 
     if (DateValidator.isInputDateValid(inputValue)) {
       const [date, month, year] = inputValue.split('/').map((s) => Number(s));
       const selectedDate = new Date(year, month - 1, date);
       setValue(selectedDate);
-      onChange(selectedDate);
+      handleChange(selectedDate);
     }
   };
 
@@ -57,10 +62,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           value={currentValue}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          onChange={handleChange}
+          onChange={handleChangeInput}
           onToggle={handleToggle}
         />
-        {showPopup && <MonthCalendar value={value} onChange={setValue} />}
+        {showPopup && <MonthCalendar value={value} onChange={handleChange} />}
       </Container>
     </>
   );
