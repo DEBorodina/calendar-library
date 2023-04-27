@@ -2,22 +2,26 @@ import React, { useMemo } from 'react';
 
 import { daysOfWeek } from '@/constants/daysOfWeek';
 import { MonthCalendarCell } from '@/styles/common';
-import { MonthCalendarHelper } from '@/utils/MonthCalendarHelper';
+import { WeekCalendarHelper } from '@/utils/WeekCalendarHelper';
 
 import { MonthCalendarDay } from '../MonthCalendarDay';
 import { CalendarGrid } from './styles';
-import { MonthCalendarProps } from './types';
+import { WeekCalendarProps } from './types';
 
-export const MonthCalendarGrid: React.FC<MonthCalendarProps> = ({
+export const WeekCalendarGrid: React.FC<WeekCalendarProps> = ({
   panelMonth,
   panelYear,
+  panelWeek,
   value,
   onChange,
 }) => {
   const dateCells = useMemo(() => {
-    return MonthCalendarHelper.getMonthToDisplay(panelYear, panelMonth);
-  }, [panelMonth, panelYear]);
-
+    return WeekCalendarHelper.getWeekToDisplay(
+      panelYear,
+      panelMonth,
+      panelWeek
+    );
+  }, [panelMonth, panelYear, panelWeek]);
   return (
     <CalendarGrid>
       {daysOfWeek.map((day) => (

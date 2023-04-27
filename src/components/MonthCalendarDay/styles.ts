@@ -8,7 +8,6 @@ const CELL_BORDER_RADIUS = 8;
 
 const DATE_COLOR = '#333333';
 const SELECTED_DATE_COLOR = '#FFFFFF';
-const ANOTHER_MONTH_DATE_COLOR = '#AAAAAA';
 
 const CURRENT_DATE_BACKGROUND_COLOR = '#F1F1F1';
 const SELECTED_DATE_BACKGROUND_COLOR = '#2F80ED';
@@ -35,7 +34,7 @@ export const Cell = styled.div<CellProps>`
   }};
   color: ${(props) => {
     if (props.isSelected) return SELECTED_DATE_COLOR;
-    if (!props.isCurrentMonth) return ANOTHER_MONTH_DATE_COLOR;
     else return DATE_COLOR;
   }};
+  opacity: ${(props) => (props.isCurrentMonth ? 1 : 0.5)}}
 `;

@@ -2,7 +2,7 @@ import { CalendarHelper } from './CalendarHelper';
 
 export class DateValidator {
   static isInputDateValid = (dateInput: string) => {
-    const validInputDateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+    const validInputDateRegex = /^\d{2}\/\d{2}\/\d{1,4}$/;
     if (!validInputDateRegex.test(dateInput)) return false;
 
     const [date, month, year] = dateInput.split('/').map((s) => Number(s));

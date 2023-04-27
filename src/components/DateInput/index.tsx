@@ -21,9 +21,17 @@ export const DateInput: React.FC<DateInputProps> = ({
   }, [value]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newInputValue = e.target.value.trim();
-    setInputValue(newInputValue);
-    onChange(newInputValue);
+    let newValue = e.target.value;
+
+    if (!newValue.match(/^[\d|/]*$/)) return;
+
+    if (newValue.match(new RegExp(inputValue + '\\d'))) {
+      if (newValue.length == 2 || newValue.length == 5) {
+        newValue += '/';
+      }
+    }
+    setInputValue(newValue);
+    onChange(newValue);
   };
 
   const handleBlur = () => {
@@ -34,11 +42,12 @@ export const DateInput: React.FC<DateInputProps> = ({
     <InputContainer>
       <Input
         type="text"
+        maxLength={10}
         onFocus={onFocus}
         onBlur={handleBlur}
         value={inputValue}
         onChange={handleChange}
-        placeholder={'Choose Date'}
+        placeholder={'dd/mm/yyyy'}
       />
       <IconButton onClick={onToggle}>
         <Icon icon={IconTypes.calendar} />
