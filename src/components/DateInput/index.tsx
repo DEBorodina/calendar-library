@@ -2,8 +2,7 @@ import React, { useLayoutEffect, useState } from 'react';
 
 import { IconButton } from '@/styles/common';
 
-import { Icon } from '../Icons';
-import { IconTypes } from '../Icons/types';
+import { Icons } from '../Icons';
 import { Input, InputContainer } from './style';
 import { DateInputProps } from './types';
 
@@ -49,9 +48,7 @@ export const DateInput: React.FC<DateInputProps> = ({
         onChange={handleChange}
         placeholder={'dd/mm/yyyy'}
       />
-      <IconButton onClick={onToggle}>
-        <Icon icon={IconTypes.calendar} />
-      </IconButton>
+      <IconButton onClick={onToggle}>{Icons.calendar}</IconButton>
     </InputContainer>
   );
 };

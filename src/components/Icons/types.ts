@@ -1,10 +1,3 @@
-export enum IconTypes {
-  leftArrow,
-  rightArrow,
-  cross,
-  calendar,
-}
+import { Icons } from '.';
 
-export interface IconProps {
-  icon: IconTypes;
-}
+export type IconTypes = keyof typeof Icons;

@@ -2,8 +2,7 @@ import React from 'react';
 
 import { IconButton } from '@/styles/common';
 
-import { Icon } from '../Icons';
-import { IconTypes } from '../Icons/types';
+import { Icons } from '../Icons';
 import { Container, Title } from './styles';
 import { ControlPanelProps } from './types';
 
@@ -14,13 +13,9 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
 }) => {
   return (
     <Container>
-      <IconButton onClick={handlePrevious}>
-        <Icon icon={IconTypes.leftArrow} />
-      </IconButton>
+      <IconButton onClick={handlePrevious}>{Icons.leftArrow}</IconButton>
       <Title>{title}</Title>
-      <IconButton onClick={handleNext}>
-        <Icon icon={IconTypes.rightArrow} />
-      </IconButton>
+      <IconButton onClick={handleNext}>{Icons.rightArrow}</IconButton>
     </Container>
   );
 };
