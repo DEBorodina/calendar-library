@@ -2,8 +2,7 @@ import { CalendarHelper } from './CalendarHelper';
 import { MonthCalendarHelper } from './MonthCalendarHelper';
 
 export class WeekCalendarHelper {
-  static getCurrentWeek = (currentDate: Date): number => {
-    //GET NUmber
+  static getCurrentWeekNumber = (currentDate: Date): number => {
     const monthDaysToDisplay = MonthCalendarHelper.getMonthToDisplay(
       currentDate.getFullYear(),
       currentDate.getMonth()

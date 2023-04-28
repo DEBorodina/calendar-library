@@ -9,9 +9,17 @@ export class MonthCalendarHelper {
       month
     );
 
-    for (let i = 1; i <= currentMonthDaysAmount; i++) {
+    const days = Array(currentMonthDaysAmount)
+      .fill(0)
+      .map((e, i) => i + 1);
+
+    days.forEach((day) => {
+      dateCells.push(CalendarHelper.createDateWithFullYear(year, month, day));
+    });
+
+    /*for (let i = 1; i <= currentMonthDaysAmount; i++) {
       dateCells.push(CalendarHelper.createDateWithFullYear(year, month, i));
-    }
+    }*/
 
     return dateCells;
   };
@@ -24,9 +32,18 @@ export class MonthCalendarHelper {
     ).getDay();
     const dateCells: Date[] = [];
 
-    for (let i = currentMonthFirstDay - 1; i >= 0; i--) {
+    const days = Array(currentMonthFirstDay)
+      .fill(0)
+      .map((e, i) => currentMonthFirstDay - 1 - i);
+
+    days.forEach((day) => {
+      dateCells.push(CalendarHelper.createDateWithFullYear(year, month, -day));
+    });
+
+    /*for (let i = currentMonthFirstDay - 1; i >= 0; i--) {
       dateCells.push(CalendarHelper.createDateWithFullYear(year, month, -i));
-    }
+    }*/
+
     return dateCells;
   };
 
@@ -43,8 +60,29 @@ export class MonthCalendarHelper {
 
     const dateCells: Date[] = [];
 
-    let totalCellsAmount = previousMonthCellsAmount + currentMonthDaysAmount;
-    let i = 1;
+    const totalCellsAmount = previousMonthCellsAmount + currentMonthDaysAmount;
+
+    const amountOfDaysInLastWeek = totalCellsAmount % 7;
+
+    if (amountOfDaysInLastWeek === 0) return dateCells;
+
+    const amountOfDaysToAdd = 7 - amountOfDaysInLastWeek;
+
+    const days = Array(amountOfDaysToAdd)
+      .fill(0)
+      .map((e, i) => i + 1);
+
+    days.forEach((day) => {
+      dateCells.push(
+        CalendarHelper.createDateWithFullYear(
+          year,
+          month,
+          currentMonthDaysAmount + day
+        )
+      );
+    });
+
+    /*let i = 1;
     while (totalCellsAmount % 7 !== 0) {
       dateCells.push(
         CalendarHelper.createDateWithFullYear(
@@ -55,7 +93,7 @@ export class MonthCalendarHelper {
       );
       totalCellsAmount += 1;
       i++;
-    }
+    }*/
 
     return dateCells;
   };

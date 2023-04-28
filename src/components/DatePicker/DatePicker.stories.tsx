@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
 
 import { DatePicker } from './index';
 
@@ -13,10 +12,15 @@ type Story = StoryObj<typeof DatePicker>;
 
 export const Primary: Story = {
   name: 'Month Calendar',
-  render: () => (
-    <DatePicker
-      defaultValue={new Date(Date.now())}
-      onChange={(date) => console.log(date)}
-    />
-  ),
+  argTypes: {
+    type: {
+      options: ['month', 'week'],
+      control: { type: 'radio' },
+    },
+  },
+  args: {
+    type: 'week',
+    defaultValue: new Date(Date.now()),
+    onChange: (date) => console.log(date),
+  },
 };

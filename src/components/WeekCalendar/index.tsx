@@ -15,7 +15,7 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
   const [panelYear, setPanelYear] = useState(value.getFullYear());
   const [panelMonth, setPanelMonth] = useState(value.getMonth());
   const [panelWeek, setPanelWeek] = useState(
-    WeekCalendarHelper.getCurrentWeek(value)
+    WeekCalendarHelper.getCurrentWeekNumber(value)
   );
 
   const handlePreviousWeek = () => {
@@ -83,7 +83,7 @@ export const WeekCalendar: React.FC<WeekCalendarProps> = ({
   useLayoutEffect(() => {
     setPanelYear(value.getFullYear());
     setPanelMonth(value.getMonth());
-    setPanelWeek(WeekCalendarHelper.getCurrentWeek(value));
+    setPanelWeek(WeekCalendarHelper.getCurrentWeekNumber(value));
   }, [value]);
 
   return (
