@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useState } from 'react';
 
 import { IconButton } from '@/styles/common';
 
-import { Icons } from '../Icons';
+import { Icons } from '../../constants/icons';
 import { Input, InputContainer } from './style';
 import { DateInputProps } from './types';
 
