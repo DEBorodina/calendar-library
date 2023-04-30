@@ -12,11 +12,13 @@ const SELECTED_DATE_COLOR = '#FFFFFF';
 const CURRENT_DATE_BACKGROUND_COLOR = '#F1F1F1';
 const SELECTED_DATE_BACKGROUND_COLOR = '#2F80ED';
 
-const CELL_SIZE = 30;
+const CELL_SIZE = 100; //30
+const FONT_SIZE = 54; //16
 
 export const Container = styled(MonthCalendarCell)`
   width: ${CELL_SIZE}px;
   height: ${CELL_SIZE}px;
+  margin: 0 auto;
 `;
 
 export const Cell = styled.div<CellProps>`
@@ -26,6 +28,7 @@ export const Cell = styled.div<CellProps>`
   width: 90%;
   height: 90%;
   cursor: pointer;
+  font-size: ${FONT_SIZE}px;
   border-radius: ${CELL_BORDER_RADIUS}px;
   background-color: ${(props) => {
     if (props.isSelected) return SELECTED_DATE_BACKGROUND_COLOR;

@@ -7,15 +7,15 @@ import { DateFormatter } from '@/utils/DateFormatter';
 import { DateValidator } from '@/utils/DateValidator';
 
 import { DateInput } from '../DateInput';
-import { MonthCalendar } from '../MonthCalendar';
-import { WeekCalendar } from '../WeekCalendar';
+import { DayCalendar } from '../DayCalendar';
+// import { MonthCalendar } from '../MonthCalendar';
+// import { WeekCalendar } from '../WeekCalendar';
 import { Container } from './styles';
 import { DatePickerProps } from './types';
 
 export const DatePicker: React.FC<DatePickerProps> = ({
   defaultValue,
   onChange,
-  type,
 }) => {
   const [popUp, showPopup, setShowPopup] = usePopup();
   const [value, setValue] = useState(defaultValue);
@@ -61,12 +61,12 @@ export const DatePicker: React.FC<DatePickerProps> = ({
       setCurrentValue(DateFormatter.getInputValueFromDate(value));
   };
 
-  const calendar =
+  /*const calendar =
     type === 'week' ? (
       <WeekCalendar value={value} onChange={handleChange} />
     ) : (
       <MonthCalendar value={value} onChange={handleChange} />
-    );
+    );*/
 
   return (
     <>
@@ -79,7 +79,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           onChange={handleChangeInput}
           onToggle={handleToggle}
         />
-        {showPopup && calendar}
+        {showPopup && <DayCalendar value={value} onChange={handleChange} />}
       </Container>
     </>
   );
