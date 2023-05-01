@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const CALENDAR_TOP_OFFSET = 70;
+const CALENDAR_TOP_OFFSET = 60;
 
 const CALENDAR_BORDER_COLOR = '#E1E1E1';
 const CALENDAR_BORDER_RADIUS = 8;
@@ -20,5 +20,4 @@ export const Calendar = styled.div`
   border-width: ${CALENDAR_BORDER_WIDTH}px;
   border-style: solid;
   padding: ${CALENDAR_PADDING}px;
-  background-color: #ffffff;
 `;

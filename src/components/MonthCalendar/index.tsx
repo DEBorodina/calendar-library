@@ -11,8 +11,13 @@ export const MonthCalendar: React.FC<MonthCalendarProps> = ({
   value,
   onChange,
 }) => {
-  const [panelYear, setPanelYear] = useState(value.getFullYear());
-  const [panelMonth, setPanelMonth] = useState(value.getMonth());
+  const currentDate = new Date(Date.now());
+  const [panelYear, setPanelYear] = useState(
+    value ? value.getFullYear() : currentDate.getFullYear()
+  );
+  const [panelMonth, setPanelMonth] = useState(
+    value ? value.getMonth() : currentDate.getMonth()
+  );
 
   const handlePreviousMonth = () => {
     if (panelMonth == 0) {

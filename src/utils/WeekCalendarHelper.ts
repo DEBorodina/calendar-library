@@ -2,10 +2,14 @@ import { CalendarHelper } from './CalendarHelper';
 import { MonthCalendarHelper } from './MonthCalendarHelper';
 
 export class WeekCalendarHelper {
-  static getCurrentWeekNumber = (currentDate: Date): number => {
+  static getCurrentWeekNumber = (
+    currentDate: Date,
+    weekStart: number
+  ): number => {
     const monthDaysToDisplay = MonthCalendarHelper.getMonthToDisplay(
       currentDate.getFullYear(),
-      currentDate.getMonth()
+      currentDate.getMonth(),
+      weekStart
     );
 
     const currentDateIndex = monthDaysToDisplay.findIndex((date) =>
@@ -16,10 +20,15 @@ export class WeekCalendarHelper {
     return currentWeek;
   };
 
-  static getNumberOfWeeksInMonth = (year: number, month: number): number => {
+  static getNumberOfWeeksInMonth = (
+    year: number,
+    month: number,
+    weekStart: number
+  ): number => {
     const monthDaysToDisplay = MonthCalendarHelper.getMonthToDisplay(
       year,
-      month
+      month,
+      weekStart
     );
     const numberOfMonthDaysToDisplay = monthDaysToDisplay.length;
 
@@ -30,9 +39,14 @@ export class WeekCalendarHelper {
   static getWeekToDisplay = (
     year: number,
     month: number,
-    week: number
+    week: number,
+    weekStart: number
   ): Date[] => {
-    const monthToDisplay = MonthCalendarHelper.getMonthToDisplay(year, month);
+    const monthToDisplay = MonthCalendarHelper.getMonthToDisplay(
+      year,
+      month,
+      weekStart
+    );
 
     const firstWeekDay = week * 7;
     const lastWeekDay = firstWeekDay + 7;

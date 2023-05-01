@@ -17,10 +17,19 @@ export const Primary: Story = {
       options: ['month', 'week'],
       control: { type: 'radio' },
     },
+    weekStart: {
+      options: ['monday', 'sunday'],
+      control: { type: 'radio' },
+    },
   },
   args: {
     type: 'week',
+    weekStart: 'monday',
+    showWeekends: true,
     defaultValue: new Date(Date.now()),
-    onChange: (date) => console.log(date),
+    minDate: new Date(2023, 0, 1),
+    onChange: (date) => {
+      console.log('onchange', date);
+    },
   },
 };

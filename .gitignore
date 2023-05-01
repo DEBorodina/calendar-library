@@ -7,3 +7,5 @@ storybook-static
 # production
 /dist
 .npmrc
+
+todo.txt

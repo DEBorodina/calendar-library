@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
-export const usePopup = () => {
+export const usePopup = (): [
+  React.RefObject<HTMLDivElement>,
+  boolean,
+  React.Dispatch<React.SetStateAction<boolean>>
+] => {
   const [showPopup, setShowPopup] = useState(false);
   const popUp = useRef<HTMLDivElement>(null);
 
@@ -17,5 +21,5 @@ export const usePopup = () => {
     }
   };
 
-  return [popUp, showPopup, setShowPopup] as const;
+  return [popUp, showPopup, setShowPopup];
 };

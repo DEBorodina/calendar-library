@@ -1,25 +1,32 @@
 import React, { useLayoutEffect, useState } from 'react';
 
 import { IconButton } from '@/styles/common';
+import { CalendarHelper } from '@/utils/CalendarHelper';
+import { DateFormatter } from '@/utils/DateFormatter';
+import { DateValidator } from '@/utils/DateValidator';
 
 import { Icons } from '../../constants/icons';
 import { Input, InputContainer } from './style';
 import { DateInputProps } from './types';
 
 export const DateInput: React.FC<DateInputProps> = ({
-  onFocus,
-  onBlur,
-  onChange,
-  onToggle,
+  handleChange,
+  handlePopUp,
   value,
+  minDate,
+  maxDate,
+  setErrors,
 }) => {
-  const [inputValue, setInputValue] = useState(value);
+  const [inputValue, setInputValue] = useState(
+    value ? DateFormatter.getInputValueFromDate(value) : ''
+  );
 
   useLayoutEffect(() => {
-    setInputValue(value);
+    setInputValue(value ? DateFormatter.getInputValueFromDate(value) : '');
   }, [value]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setErrors('');
     let newValue = e.target.value;
 
     if (!newValue.match(/^[\d|/]*$/)) return;
@@ -29,12 +36,47 @@ export const DateInput: React.FC<DateInputProps> = ({
         newValue += '/';
       }
     }
+
     setInputValue(newValue);
-    onChange(newValue);
+
+    if (!newValue) {
+      handleChange(null);
+      return;
+    }
+
+    if (!DateValidator.isInputFormatValid(newValue)) {
+      setErrors('Invalid input data');
+      return;
+    }
+
+    const [date, month, year] = newValue.split('/').map((s) => Number(s));
+    const selectedDate = CalendarHelper.createDateWithFullYear(
+      year,
+      month - 1,
+      date
+    );
+
+    if (!DateValidator.isInValidRange(selectedDate, minDate, maxDate)) {
+      setErrors('Date out of range');
+      return;
+    }
+
+    handleChange(selectedDate);
   };
 
-  const handleBlur = () => {
-    onBlur(inputValue);
+  const onFocus = () => {
+    handlePopUp(true);
+  };
+
+  const onToggle = () => {
+    handlePopUp((showPopup) => !showPopup);
+  };
+
+  const onBlur = () => {
+    if (!DateValidator.isInputDateValid(inputValue, minDate, maxDate)) {
+      setErrors('');
+      setInputValue(DateFormatter.getInputValueFromDate(value));
+    }
   };
 
   return (
@@ -43,9 +85,9 @@ export const DateInput: React.FC<DateInputProps> = ({
         type="text"
         maxLength={10}
         onFocus={onFocus}
-        onBlur={handleBlur}
+        onBlur={onBlur}
         value={inputValue}
-        onChange={handleChange}
+        onChange={onChange}
         placeholder={'dd/mm/yyyy'}
       />
       <IconButton onClick={onToggle}>{Icons.calendar}</IconButton>

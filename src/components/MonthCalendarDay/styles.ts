@@ -12,8 +12,8 @@ const SELECTED_DATE_COLOR = '#FFFFFF';
 const CURRENT_DATE_BACKGROUND_COLOR = '#F1F1F1';
 const SELECTED_DATE_BACKGROUND_COLOR = '#2F80ED';
 
-const CELL_SIZE = 100; //30
-const FONT_SIZE = 54; //16
+const CELL_SIZE = 30; //100; //30
+const FONT_SIZE = 16; //54; //16
 
 export const Container = styled(MonthCalendarCell)`
   width: ${CELL_SIZE}px;
@@ -27,7 +27,7 @@ export const Cell = styled.div<CellProps>`
   align-items: center;
   width: 90%;
   height: 90%;
-  cursor: pointer;
+  cursor: ${(props) => (props.isInValidRange ? 'pointer' : 'auto')};
   font-size: ${FONT_SIZE}px;
   border-radius: ${CELL_BORDER_RADIUS}px;
   background-color: ${(props) => {
@@ -37,7 +37,14 @@ export const Cell = styled.div<CellProps>`
   }};
   color: ${(props) => {
     if (props.isSelected) return SELECTED_DATE_COLOR;
+    if (props.isHoliday) return 'red';
+    if (props.isWeekend) return SELECTED_DATE_BACKGROUND_COLOR;
     else return DATE_COLOR;
   }};
-  opacity: ${(props) => (props.isCurrentMonth ? 1 : 0.5)}}
+  opacity: ${(props) => {
+    let opacity = 1;
+    if (!props.isCurrentMonth) opacity -= 0.5;
+    if (!props.isInValidRange) opacity -= 0.3;
+    return opacity;
+  }};
 `;

@@ -1,7 +1,8 @@
 export interface DateInputProps {
-  onFocus: () => void;
-  onBlur: (inputValue?: string) => void;
-  onChange: (inputValue?: string) => void;
-  onToggle: () => void;
-  value: string;
+  handlePopUp: React.Dispatch<React.SetStateAction<boolean>>;
+  handleChange: (inputValue: Date) => void;
+  value: Date;
+  minDate?: Date;
+  maxDate?: Date;
+  setErrors: React.Dispatch<React.SetStateAction<string>>;
 }

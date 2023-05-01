@@ -1,88 +1,72 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { usePopup } from '@/hooks';
 import Global from '@/styles/global';
-import { CalendarHelper } from '@/utils/CalendarHelper';
-import { DateFormatter } from '@/utils/DateFormatter';
 import { DateValidator } from '@/utils/DateValidator';
 
+import { Calendar } from '../Calendar';
 import { DateInput } from '../DateInput';
-import { DayCalendar } from '../DayCalendar';
-// import { MonthCalendar } from '../MonthCalendar';
-// import { WeekCalendar } from '../WeekCalendar';
-import { Container } from './styles';
+import { Container, ErrorText, Label } from './styles';
 import { DatePickerProps } from './types';
 
 export const DatePicker: React.FC<DatePickerProps> = ({
-  defaultValue,
+  defaultValue = null,
   onChange,
+  label,
+  type,
+  weekStart,
+  showWeekends,
+  holidays,
+  minDate,
+  maxDate,
 }) => {
   const [popUp, showPopup, setShowPopup] = usePopup();
   const [value, setValue] = useState(defaultValue);
+  const [errors, setErrors] = useState('');
 
-  useLayoutEffect(() => {
-    setCurrentValue(DateFormatter.getInputValueFromDate(value));
-  }, [value]);
+  useEffect(() => {
+    if (!DateValidator.isInValidRange(defaultValue, minDate, maxDate)) {
+      throw new Error('Default value should be between min and max date');
+    }
+  }, [defaultValue, minDate, maxDate]);
 
-  const [currentValue, setCurrentValue] = useState(
-    DateFormatter.getInputValueFromDate(defaultValue)
-  );
+  useEffect(() => {
+    setValue(defaultValue);
+  }, [defaultValue]);
 
   const handleChange = (date: Date) => {
     setValue(date);
     onChange(date);
   };
 
-  const handleChangeInput = (inputValue: string) => {
-    setCurrentValue(inputValue.trim());
-
-    if (DateValidator.isInputDateValid(inputValue)) {
-      const [date, month, year] = inputValue.split('/').map((s) => Number(s));
-      const selectedDate = CalendarHelper.createDateWithFullYear(
-        year,
-        month - 1,
-        date
-      );
-      setValue(selectedDate);
-      handleChange(selectedDate);
-    }
-  };
-
-  const handleFocus = () => {
-    setShowPopup(true);
-  };
-
-  const handleToggle = () => {
-    setShowPopup(!showPopup);
-  };
-
-  const handleBlur = (inputValue: string) => {
-    if (!DateValidator.isInputDateValid(inputValue))
-      setCurrentValue(DateFormatter.getInputValueFromDate(value));
-  };
-
-  /*const calendar =
-    type === 'week' ? (
-      <WeekCalendar value={value} onChange={handleChange} />
-    ) : (
-      <MonthCalendar value={value} onChange={handleChange} />
-    );*/
-
   return (
     <>
       <Global />
       <Container ref={popUp}>
+        <Label>{label}</Label>
         <DateInput
-          value={currentValue}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={handleChangeInput}
-          onToggle={handleToggle}
+          value={value}
+          handleChange={handleChange}
+          handlePopUp={setShowPopup}
+          minDate={minDate}
+          maxDate={maxDate}
+          setErrors={setErrors}
         />
-        {showPopup && <DayCalendar value={value} onChange={handleChange} />}
+        <ErrorText>{errors}</ErrorText>
+        {showPopup && (
+          <Calendar
+            type={type}
+            onChange={handleChange}
+            value={value}
+            weekStart={weekStart}
+            showWeekends={showWeekends}
+            holidays={holidays}
+            minDate={minDate}
+            maxDate={maxDate}
+            setErrors={setErrors}
+          />
+        )}
       </Container>
     </>
   );
 };
-
-// {showPopup && <MonthCalendar value={value} onChange={handleChange} />}

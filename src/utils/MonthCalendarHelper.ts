@@ -8,7 +8,6 @@ export class MonthCalendarHelper {
       year,
       month
     );
-
     const days = Array(currentMonthDaysAmount)
       .fill(0)
       .map((e, i) => i + 1);
@@ -24,12 +23,19 @@ export class MonthCalendarHelper {
     return dateCells;
   };
 
-  static getPreviousMonthDays = (year: number, month: number): Date[] => {
-    const currentMonthFirstDay = CalendarHelper.createDateWithFullYear(
+  static getPreviousMonthDays = (
+    year: number,
+    month: number,
+    weekStart: number
+  ): Date[] => {
+    let currentMonthFirstDay = CalendarHelper.createDateWithFullYear(
       year,
       month,
       1
     ).getDay();
+    if (currentMonthFirstDay != 0) currentMonthFirstDay -= weekStart;
+    else currentMonthFirstDay = weekStart ? 6 : currentMonthFirstDay;
+
     const dateCells: Date[] = [];
 
     const days = Array(currentMonthFirstDay)
@@ -47,12 +53,16 @@ export class MonthCalendarHelper {
     return dateCells;
   };
 
-  static getNextMonthDays = (year: number, month: number): Date[] => {
-    const previousMonthCellsAmount = CalendarHelper.createDateWithFullYear(
+  static getNextMonthDays = (
+    year: number,
+    month: number,
+    weekStart: number
+  ): Date[] => {
+    const previousMonthCellsAmount = MonthCalendarHelper.getPreviousMonthDays(
       year,
       month,
-      1
-    ).getDay();
+      weekStart
+    ).length;
     const currentMonthDaysAmount = CalendarHelper.getNumberOfDaysInMonth(
       year,
       month
@@ -98,16 +108,25 @@ export class MonthCalendarHelper {
     return dateCells;
   };
 
-  static getMonthToDisplay = (year: number, month: number): Date[] => {
+  static getMonthToDisplay = (
+    year: number,
+    month: number,
+    weekStart: number
+  ): Date[] => {
     const currentMonthDays = MonthCalendarHelper.getCurrentMonthDays(
       year,
       month
     );
     const previousMonthDays = MonthCalendarHelper.getPreviousMonthDays(
       year,
-      month
+      month,
+      weekStart
     );
-    const nextMonthDays = MonthCalendarHelper.getNextMonthDays(year, month);
+    const nextMonthDays = MonthCalendarHelper.getNextMonthDays(
+      year,
+      month,
+      weekStart
+    );
 
     return [...previousMonthDays, ...currentMonthDays, ...nextMonthDays];
   };

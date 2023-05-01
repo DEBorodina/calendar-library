@@ -14,17 +14,27 @@ export const WeekCalendarGrid: React.FC<WeekCalendarProps> = ({
   panelWeek,
   value,
   onChange,
+  weekStart,
+  showWeekends,
+  holidays,
 }) => {
   const dateCells = useMemo(() => {
     return WeekCalendarHelper.getWeekToDisplay(
       panelYear,
       panelMonth,
-      panelWeek
+      panelWeek,
+      weekStart
     );
-  }, [panelMonth, panelYear, panelWeek]);
+  }, [panelMonth, panelYear, panelWeek, weekStart]);
+
+  const weekDaysToDisplay = useMemo(() => {
+    if (weekStart === 1) return [...daysOfWeek.slice(1), daysOfWeek[0]];
+    else return daysOfWeek;
+  }, [weekStart]);
+
   return (
     <CalendarGrid>
-      {daysOfWeek.map((day) => (
+      {weekDaysToDisplay.map((day) => (
         <MonthCalendarCell key={day}>{day}</MonthCalendarCell>
       ))}
       {dateCells.map((date) => {
@@ -36,6 +46,8 @@ export const WeekCalendarGrid: React.FC<WeekCalendarProps> = ({
             date={date}
             selectedDate={value}
             panelMonth={panelMonth}
+            showWeekends={showWeekends}
+            holidays={holidays}
           />
         );
       })}

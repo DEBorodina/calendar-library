@@ -3,4 +3,5 @@ export interface WeekCalendarProps {
   onChange: (value: Date) => void;
   min?: Date;
   max?: Date;
+  weekStart: 0 | 1;
 }

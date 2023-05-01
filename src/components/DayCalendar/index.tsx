@@ -11,10 +11,12 @@ export const DayCalendar: React.FC<DayCalendarProps> = ({
   value,
   onChange,
 }) => {
-  const [currentValue, setCurrentValue] = useState(value);
+  const [currentValue, setCurrentValue] = useState(
+    value ? value : new Date(Date.now())
+  );
 
   useEffect(() => {
-    setCurrentValue(value);
+    setCurrentValue(value ? value : new Date(Date.now()));
   }, [value]);
 
   const handlePreviousDay = () => {
