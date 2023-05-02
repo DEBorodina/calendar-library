@@ -1,8 +1,9 @@
 import React from 'react';
 
+import { RangeCalendarProps } from '@/components/Calendar';
 import { MonthCalendarGrid } from '@/components/MonthCalendarGrid';
 
-export interface ICalendar extends CalendarAutoProps {
+export interface ICalendar extends CalendarAutoProps, RangeCalendarProps {
   handlePrevious: (state: CalendarState) => CalendarState;
   handleNext: (state: CalendarState) => CalendarState;
   getState: (value?: Date) => CalendarState;
@@ -33,6 +34,7 @@ export interface CalendarExtraProps {
 export interface CalendarProps
   extends CalendarAutoProps,
     CalendarExtraProps,
+    RangeCalendarProps,
     CalendarState {}
 
 export class BaseCalendar implements ICalendar {
@@ -42,6 +44,8 @@ export class BaseCalendar implements ICalendar {
   public grid = MonthCalendarGrid;
   public minDate: Date | null = null;
   public maxDate: Date | null = null;
+  public endDate: Date | null = null;
+  public startDate: Date | null = null;
 
   public getState(value?: Date): CalendarState {
     if (!value) value = new Date(Date.now());
@@ -100,6 +104,8 @@ export class BaseCalendar implements ICalendar {
           holidays={this.holidays}
           minDate={this.minDate}
           maxDate={this.maxDate}
+          endDate={this.endDate}
+          startDate={this.startDate}
         />
       );
     };

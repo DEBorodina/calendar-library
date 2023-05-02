@@ -26,6 +26,14 @@ export class DecoratorService {
     calendar.maxDate = maxDate;
   };
 
+  protected static withEndDate = (calendar: ICalendar, endDate: Date) => {
+    calendar.endDate = endDate;
+  };
+
+  protected static withStartDate = (calendar: ICalendar, startDate: Date) => {
+    calendar.startDate = startDate;
+  };
+
   protected static weekCalendar = (calendar: ICalendar) => {
     weekCalendarDecorator(calendar);
   };
@@ -40,17 +48,25 @@ export class DecoratorService {
     showWeekends: boolean,
     holidays: Date[],
     minDate: Date,
-    maxDate: Date
+    maxDate: Date,
+    endDate: Date,
+    startDate: Date
   ) => {
     const calendar: ICalendar = new BaseCalendar();
 
     if (type === 'week') DecoratorService.weekCalendar(calendar);
     if (type === 'day') DecoratorService.dayCalendar(calendar);
+
     if (weekStart === 'monday') DecoratorService.withWeekStartMonday(calendar);
+
     if (showWeekends) DecoratorService.withShowWeekends(calendar);
     if (holidays) DecoratorService.withShowHolidays(calendar, holidays);
+
     if (minDate) DecoratorService.withMinDate(calendar, minDate);
     if (maxDate) DecoratorService.withMaxDate(calendar, maxDate);
+
+    if (endDate) DecoratorService.withEndDate(calendar, endDate);
+    if (startDate) DecoratorService.withStartDate(calendar, startDate);
 
     return calendar;
   };

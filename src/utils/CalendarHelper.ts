@@ -18,6 +18,7 @@ export class CalendarHelper {
   };
 
   static isDateLess = (lessDate: Date, biggerDate: Date): boolean => {
+    if (!lessDate || !biggerDate) return true;
     lessDate = new Date(
       lessDate.getFullYear(),
       lessDate.getMonth(),

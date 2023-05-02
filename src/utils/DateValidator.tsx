@@ -45,8 +45,10 @@ export class DateValidator {
   };
 
   static isInValidRange(date: Date, minDate: Date, maxDate: Date) {
-    if (minDate && CalendarHelper.isDateLess(date, minDate)) return false;
-    if (maxDate && CalendarHelper.isDateLess(maxDate, date)) return false;
+    if (date && minDate && CalendarHelper.isDateLess(date, minDate))
+      return false;
+    if (date && maxDate && CalendarHelper.isDateLess(maxDate, date))
+      return false;
     return true;
   }
 }

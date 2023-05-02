@@ -1,4 +1,6 @@
-export interface MonthCalendarProps {
+import { RangeCalendarProps } from '../Calendar';
+
+export interface MonthCalendarProps extends RangeCalendarProps {
   panelYear: number;
   panelMonth: number;
   value: Date;

@@ -18,6 +18,8 @@ export const MonthCalendarGrid: React.FC<MonthCalendarProps> = ({
   holidays,
   minDate,
   maxDate,
+  endDate,
+  startDate,
 }) => {
   const dateCells = useMemo(() => {
     return MonthCalendarHelper.getMonthToDisplay(
@@ -50,6 +52,8 @@ export const MonthCalendarGrid: React.FC<MonthCalendarProps> = ({
               holidays={holidays}
               minDate={minDate}
               maxDate={maxDate}
+              endDate={endDate}
+              startDate={startDate}
             />
           </Container>
         );

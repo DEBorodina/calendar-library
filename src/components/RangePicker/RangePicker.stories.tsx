@@ -11,13 +11,26 @@ export default meta;
 type Story = StoryObj<typeof RangePicker>;
 
 const tomorrow = new Date();
-tomorrow.setDate(new Date().getDate() + 4);
+tomorrow.setDate(new Date().getDate() + 1);
 
 export const Primary: Story = {
   name: 'Month Calendar',
-  argTypes: {},
+  argTypes: {
+    type: {
+      options: ['month', 'week', 'day'],
+      control: { type: 'radio' },
+    },
+    weekStart: {
+      options: ['monday', 'sunday'],
+      control: { type: 'radio' },
+    },
+  },
   args: {
+    type: 'week',
+    weekStart: 'monday',
+    showWeekends: true,
     defaultEndDate: tomorrow,
+    defaultStartDate: new Date(),
     onChange: (date) => console.log(date),
   },
 };

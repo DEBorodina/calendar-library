@@ -17,6 +17,10 @@ export const WeekCalendarGrid: React.FC<WeekCalendarProps> = ({
   weekStart,
   showWeekends,
   holidays,
+  minDate,
+  maxDate,
+  endDate,
+  startDate,
 }) => {
   const dateCells = useMemo(() => {
     return WeekCalendarHelper.getWeekToDisplay(
@@ -48,6 +52,10 @@ export const WeekCalendarGrid: React.FC<WeekCalendarProps> = ({
               panelMonth={panelMonth}
               showWeekends={showWeekends}
               holidays={holidays}
+              minDate={minDate}
+              maxDate={maxDate}
+              endDate={endDate}
+              startDate={startDate}
             />
           </Container>
         );

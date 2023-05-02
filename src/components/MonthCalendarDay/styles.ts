@@ -17,18 +17,41 @@ export const Cell = styled.div<CellProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 90%;
+  width: ${(props) =>
+    props.isInRange || props.isEndValue || props.isStartValue ? 100 : 90}%;
   height: 90%;
   cursor: ${(props) => (props.isInValidRange ? 'pointer' : 'auto')};
   font-size: inherit;
-  border-radius: ${CELL_BORDER_RADIUS}px;
+
+  border-top-left-radius: ${(props) =>
+    props.isInRange || props.isEndValue ? 0 : CELL_BORDER_RADIUS}px;
+  border-bottom-left-radius: ${(props) =>
+    props.isInRange || props.isEndValue ? 0 : CELL_BORDER_RADIUS}px;
+
+  border-top-right-radius: ${(props) =>
+    props.isInRange || props.isStartValue ? 0 : CELL_BORDER_RADIUS}px;
+  border-bottom-right-radius: ${(props) =>
+    props.isInRange || props.isStartValue ? 0 : CELL_BORDER_RADIUS}px;
+
   background-color: ${(props) => {
-    if (props.isSelected) return props.theme.mainColor;
+    if (
+      props.isSelected ||
+      props.isInRange ||
+      props.isEndValue ||
+      props.isStartValue
+    )
+      return props.theme.mainColor;
     if (props.isCurrent) return CURRENT_DATE_BACKGROUND_COLOR;
     else return 'transparent';
   }};
   color: ${(props) => {
-    if (props.isSelected) return SELECTED_DATE_COLOR;
+    if (
+      props.isSelected ||
+      props.isInRange ||
+      props.isEndValue ||
+      props.isStartValue
+    )
+      return SELECTED_DATE_COLOR;
     if (props.isHoliday) return props.theme.holidayColor;
     if (props.isWeekend) return props.theme.mainColor;
     else return DATE_COLOR;
@@ -37,6 +60,7 @@ export const Cell = styled.div<CellProps>`
     let opacity = 1;
     if (!props.isCurrentMonth) opacity -= 0.5;
     if (!props.isInValidRange) opacity -= 0.3;
+    if (props.isInRange) opacity -= 0.4;
     return opacity;
   }};
 `;

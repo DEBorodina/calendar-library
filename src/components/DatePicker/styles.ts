@@ -4,13 +4,13 @@ const TEXT_COLOR = '#333333';
 
 export const Container = styled.div`
   width: ${(props) => props.theme.size.width}px;
-  position: relative;
+  margin-bottom: 15px;
 `;
 
 export const Label = styled.p`
-  font-size: 15px;
+  font-size: 14px;
   color: ${TEXT_COLOR};
-  margin-bottom: 5px;
+  margin-bottom: 2px;
   margin-left: 5px;
 `;
 

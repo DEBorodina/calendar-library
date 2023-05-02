@@ -1,4 +1,6 @@
-export interface MonthCalendarDayProps {
+import { RangeCalendarProps } from '../Calendar';
+
+export interface MonthCalendarDayProps extends RangeCalendarProps {
   date: Date;
   selectedDate: Date;
   panelMonth: number;
@@ -16,4 +18,7 @@ export interface CellProps {
   isWeekend: boolean;
   isHoliday: boolean;
   isInValidRange: boolean;
+  isInRange: boolean;
+  isEndValue: boolean;
+  isStartValue: boolean;
 }

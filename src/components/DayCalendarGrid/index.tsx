@@ -14,6 +14,8 @@ export const DayCalendarGrid: React.FC<CalendarProps> = ({
   holidays,
   minDate,
   maxDate,
+  endDate,
+  startDate,
 }) => {
   return (
     <Container>
@@ -26,6 +28,8 @@ export const DayCalendarGrid: React.FC<CalendarProps> = ({
         holidays={holidays}
         minDate={minDate}
         maxDate={maxDate}
+        endDate={endDate}
+        startDate={startDate}
       />
     </Container>
   );

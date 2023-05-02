@@ -26,8 +26,9 @@ export const Primary: Story = {
     type: 'week',
     weekStart: 'monday',
     showWeekends: true,
-    defaultValue: new Date(Date.now()),
-    minDate: new Date(2023, 0, 1),
+    defaultValue: new Date(2023, 4, 5),
+    minDate: new Date(2023, 4, 1),
+    maxDate: new Date(2023, 4, 7),
     onChange: (date) => {
       console.log('onchange', date);
     },

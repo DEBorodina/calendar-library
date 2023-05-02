@@ -1,5 +1,6 @@
 export class DateFormatter {
   static getInputValueFromDate = (value: Date) => {
+    if (!value) return '';
     const dateValue = value.getDate();
     const date = String(dateValue).padStart(2, '0');
 

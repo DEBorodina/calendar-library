@@ -1,4 +1,6 @@
-export interface DatePickerProps {
+import { RangeCalendarProps } from '../Calendar';
+
+export interface DatePickerProps extends RangeCalendarProps {
   defaultValue?: Date;
   onChange: (value: Date) => void;
   type?: 'week' | 'month';
@@ -11,5 +13,5 @@ export interface DatePickerProps {
   mainColor?: string;
   holidayColor?: string;
   errorColor?: string;
-  size: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large';
 }

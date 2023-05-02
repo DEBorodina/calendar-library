@@ -25,16 +25,18 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   holidayColor,
   errorColor,
   size,
+  startDate,
+  endDate,
 }) => {
   const [popUp, showPopup, setShowPopup] = usePopup();
   const [value, setValue] = useState(defaultValue);
   const [errors, setErrors] = useState('');
 
-  useEffect(() => {
-    if (!DateValidator.isInValidRange(defaultValue, minDate, maxDate)) {
-      throw new Error('Default value should be between min and max date');
-    }
-  }, [defaultValue, minDate, maxDate]);
+  if (!DateValidator.isInValidRange(defaultValue, minDate, maxDate)) {
+    throw new Error(
+      'Default date should be bigger than min date and less than max date'
+    );
+  }
 
   const theme = useMemo(() => {
     const theme = {
@@ -79,7 +81,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             holidays={holidays}
             minDate={minDate}
             maxDate={maxDate}
-            setErrors={setErrors}
+            startDate={startDate}
+            endDate={endDate}
           />
         )}
       </Container>
