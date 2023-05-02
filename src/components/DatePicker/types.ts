@@ -14,4 +14,5 @@ export interface DatePickerProps extends RangeCalendarProps {
   holidayColor?: string;
   errorColor?: string;
   size?: 'small' | 'medium' | 'large';
+  withToDoList: boolean;
 }

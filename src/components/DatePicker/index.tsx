@@ -27,6 +27,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   size,
   startDate,
   endDate,
+  withToDoList,
 }) => {
   const [popUp, showPopup, setShowPopup] = usePopup();
   const [value, setValue] = useState(defaultValue);
@@ -83,6 +84,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             maxDate={maxDate}
             startDate={startDate}
             endDate={endDate}
+            withToDoList={withToDoList}
           />
         )}
       </Container>
