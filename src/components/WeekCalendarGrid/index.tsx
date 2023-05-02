@@ -5,7 +5,7 @@ import { MonthCalendarCell } from '@/styles/common';
 import { WeekCalendarHelper } from '@/utils/WeekCalendarHelper';
 
 import { MonthCalendarDay } from '../MonthCalendarDay';
-import { CalendarGrid } from './styles';
+import { CalendarGrid, Container } from './styles';
 import { WeekCalendarProps } from './types';
 
 export const WeekCalendarGrid: React.FC<WeekCalendarProps> = ({
@@ -40,15 +40,16 @@ export const WeekCalendarGrid: React.FC<WeekCalendarProps> = ({
       {dateCells.map((date) => {
         const key = `${date.getDate()}\\${date.getMonth()}`;
         return (
-          <MonthCalendarDay
-            key={key}
-            onClick={onChange}
-            date={date}
-            selectedDate={value}
-            panelMonth={panelMonth}
-            showWeekends={showWeekends}
-            holidays={holidays}
-          />
+          <Container key={key}>
+            <MonthCalendarDay
+              onClick={onChange}
+              date={date}
+              selectedDate={value}
+              panelMonth={panelMonth}
+              showWeekends={showWeekends}
+              holidays={holidays}
+            />
+          </Container>
         );
       })}
     </CalendarGrid>

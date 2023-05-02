@@ -14,7 +14,7 @@ export const Primary: Story = {
   name: 'Month Calendar',
   argTypes: {
     type: {
-      options: ['month', 'week'],
+      options: ['month', 'week', 'day'],
       control: { type: 'radio' },
     },
     weekStart: {

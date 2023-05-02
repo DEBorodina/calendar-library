@@ -8,4 +8,8 @@ export interface DatePickerProps {
   minDate?: Date;
   maxDate?: Date;
   label?: string;
+  mainColor?: string;
+  holidayColor?: string;
+  errorColor?: string;
+  size: 'small' | 'medium' | 'large';
 }

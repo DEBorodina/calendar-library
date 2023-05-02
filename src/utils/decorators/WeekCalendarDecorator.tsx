@@ -1,47 +1,38 @@
-import React from 'react';
-
 import { WeekCalendarGrid } from '@/components/WeekCalendarGrid';
-import { WeekCalendarProps } from '@/components/WeekCalendarGrid/types';
 
-import { BaseCalendarState } from '../CalendarService';
 import { WeekCalendarHelper } from '../WeekCalendarHelper';
-import { CalendarDecorator } from './CalendarDecorator';
+import { CalendarState, ICalendar } from './BaseCalendar';
 
-interface WeekCalendarState extends BaseCalendarState {
-  panelWeek?: number;
-}
+export const weekCalendarDecorator = (calendar: ICalendar) => {
+  calendar.grid = WeekCalendarGrid;
 
-type WeekCalendarDecoratorState<T> = WeekCalendarState & T;
-
-export class WeekCalendarDecorator<
-  S extends BaseCalendarState
-> extends CalendarDecorator<S, WeekCalendarProps> {
-  public getState(value?: Date): WeekCalendarDecoratorState<S> {
+  const initialGetState = calendar.getState;
+  calendar.getState = function (value?: Date): CalendarState {
     if (!value) value = new Date(Date.now());
+
     const state = {
-      ...this.calendarToWrap.getState(value),
+      ...initialGetState(value),
       panelWeek: WeekCalendarHelper.getCurrentWeekNumber(
         value,
-        this.calendarToWrap.weekStart
+        calendar.weekStart
       ),
     };
-    return state;
-  }
 
-  public handlePrevious(
-    state: WeekCalendarDecoratorState<S>
-  ): WeekCalendarDecoratorState<S> {
-    let newState: WeekCalendarDecoratorState<S>;
+    return state;
+  };
+
+  const initialHandlePrevious = calendar.handlePrevious;
+  calendar.handlePrevious = function (state: CalendarState): CalendarState {
+    let newState;
     const { panelWeek, panelMonth: previousMonth } = state;
 
     if (panelWeek === 0) {
-      const { panelMonth, panelYear } =
-        this.calendarToWrap.handlePrevious(state);
+      const { panelMonth, panelYear } = initialHandlePrevious(state);
 
       const numberOfWeeksInAMonth = WeekCalendarHelper.getNumberOfWeeksInMonth(
         panelYear,
         panelMonth,
-        this.calendarToWrap.weekStart
+        calendar.weekStart
       );
 
       let previousWeekNumber = numberOfWeeksInAMonth - 1;
@@ -50,7 +41,7 @@ export class WeekCalendarDecorator<
         panelYear,
         panelMonth,
         previousWeekNumber,
-        this.calendarToWrap.weekStart
+        calendar.weekStart
       );
 
       const lastWeekDay = newWeekDays[newWeekDays.length - 1];
@@ -70,13 +61,11 @@ export class WeekCalendarDecorator<
     }
 
     return newState;
-  }
+  };
 
-  public handleNext(
-    state: WeekCalendarDecoratorState<S>
-  ): WeekCalendarDecoratorState<S> {
-    let newState: WeekCalendarDecoratorState<S>;
-
+  const initialHandleNext = calendar.handleNext;
+  calendar.handleNext = function (state: CalendarState): CalendarState {
+    let newState;
     const {
       panelYear: previousPanelYear,
       panelMonth: previousPanelMonth,
@@ -86,17 +75,17 @@ export class WeekCalendarDecorator<
     const numberOfWeeksInAMonth = WeekCalendarHelper.getNumberOfWeeksInMonth(
       previousPanelYear,
       previousPanelMonth,
-      this.calendarToWrap.weekStart
+      calendar.weekStart
     );
 
     if (previousPanelWeek === numberOfWeeksInAMonth - 1) {
       let nextWeekNumber = 0;
-      const { panelMonth, panelYear } = this.calendarToWrap.handleNext(state);
+      const { panelMonth, panelYear } = initialHandleNext(state);
       const newWeekDays = WeekCalendarHelper.getWeekToDisplay(
         panelYear,
         panelMonth,
         0,
-        this.calendarToWrap.weekStart
+        calendar.weekStart
       );
 
       const firstWeekDay = newWeekDays[0];
@@ -110,12 +99,5 @@ export class WeekCalendarDecorator<
       newState = { ...state, panelWeek: previousPanelWeek + 1 };
     }
     return newState;
-  }
-
-  public getGrid(): React.FC<WeekCalendarProps> {
-    const Grid: React.FC<WeekCalendarProps> = (props: WeekCalendarProps) => (
-      <WeekCalendarGrid {...props} />
-    );
-    return Grid;
-  }
-}
+  };
+};

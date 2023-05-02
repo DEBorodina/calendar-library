@@ -7,7 +7,6 @@ export interface MonthCalendarDayProps {
   holidays: Date[];
   minDate?: Date;
   maxDate?: Date;
-  setErrors: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface CellProps {

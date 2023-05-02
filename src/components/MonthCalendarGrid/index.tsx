@@ -5,7 +5,7 @@ import { MonthCalendarCell } from '@/styles/common';
 import { MonthCalendarHelper } from '@/utils/MonthCalendarHelper';
 
 import { MonthCalendarDay } from '../MonthCalendarDay';
-import { CalendarGrid } from './styles';
+import { CalendarGrid, Container } from './styles';
 import { MonthCalendarProps } from './types';
 
 export const MonthCalendarGrid: React.FC<MonthCalendarProps> = ({
@@ -18,7 +18,6 @@ export const MonthCalendarGrid: React.FC<MonthCalendarProps> = ({
   holidays,
   minDate,
   maxDate,
-  setErrors,
 }) => {
   const dateCells = useMemo(() => {
     return MonthCalendarHelper.getMonthToDisplay(
@@ -41,18 +40,18 @@ export const MonthCalendarGrid: React.FC<MonthCalendarProps> = ({
       {dateCells.map((date) => {
         const key = `${date.getDate()}\\${date.getMonth()}`;
         return (
-          <MonthCalendarDay
-            key={key}
-            onClick={onChange}
-            date={date}
-            selectedDate={value}
-            panelMonth={panelMonth}
-            showWeekends={showWeekends}
-            holidays={holidays}
-            minDate={minDate}
-            maxDate={maxDate}
-            setErrors={setErrors}
-          />
+          <Container key={key}>
+            <MonthCalendarDay
+              onClick={onChange}
+              date={date}
+              selectedDate={value}
+              panelMonth={panelMonth}
+              showWeekends={showWeekends}
+              holidays={holidays}
+              minDate={minDate}
+              maxDate={maxDate}
+            />
+          </Container>
         );
       })}
     </CalendarGrid>

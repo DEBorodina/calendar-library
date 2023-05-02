@@ -8,5 +8,4 @@ export interface MonthCalendarProps {
   holidays: Date[];
   minDate: Date;
   maxDate: Date;
-  setErrors: React.Dispatch<React.SetStateAction<string>>;
 }

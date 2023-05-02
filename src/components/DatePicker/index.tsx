@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { ThemeProvider } from 'styled-components';
 
+import { defaultStyles, sizes } from '@/constants/styles';
 import { usePopup } from '@/hooks';
 import Global from '@/styles/global';
 import { DateValidator } from '@/utils/DateValidator';
@@ -19,6 +21,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   holidays,
   minDate,
   maxDate,
+  mainColor,
+  holidayColor,
+  errorColor,
+  size,
 }) => {
   const [popUp, showPopup, setShowPopup] = usePopup();
   const [value, setValue] = useState(defaultValue);
@@ -30,6 +36,16 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     }
   }, [defaultValue, minDate, maxDate]);
 
+  const theme = useMemo(() => {
+    const theme = {
+      mainColor: mainColor ? mainColor : defaultStyles.mainColor,
+      holidayColor: holidayColor ? holidayColor : defaultStyles.holidayColor,
+      errorColor: errorColor ? errorColor : defaultStyles.errorColor,
+      size: size ? sizes[size] : defaultStyles.size,
+    };
+    return theme;
+  }, [mainColor, holidayColor, size, errorColor]);
+
   useEffect(() => {
     setValue(defaultValue);
   }, [defaultValue]);
@@ -40,7 +56,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   };
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Global />
       <Container ref={popUp}>
         <Label>{label}</Label>
@@ -67,6 +83,6 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           />
         )}
       </Container>
-    </>
+    </ThemeProvider>
   );
 };

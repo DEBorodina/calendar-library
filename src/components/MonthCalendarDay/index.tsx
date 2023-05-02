@@ -3,7 +3,7 @@ import React from 'react';
 import { CalendarHelper } from '@/utils/CalendarHelper';
 import { DateValidator } from '@/utils/DateValidator';
 
-import { Cell, Container } from './styles';
+import { Cell } from './styles';
 import { MonthCalendarDayProps } from './types';
 
 export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
@@ -22,7 +22,6 @@ export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
   const isCurrent = CalendarHelper.isDatesEqual(date, currentDate);
   const isCurrentMonth = date.getMonth() === panelMonth;
   const isInValidRange = DateValidator.isInValidRange(date, minDate, maxDate);
-
   let isWeekend = false;
   if (showWeekends) {
     isWeekend = date.getDay() === 0 || date.getDay() === 6;
@@ -43,18 +42,16 @@ export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
   };
 
   return (
-    <Container>
-      <Cell
-        onClick={handleClick}
-        isSelected={isSelected}
-        isCurrent={isCurrent}
-        isCurrentMonth={isCurrentMonth}
-        isWeekend={isWeekend}
-        isHoliday={isHoliday}
-        isInValidRange={isInValidRange}
-      >
-        {date.getDate()}
-      </Cell>
-    </Container>
+    <Cell
+      onClick={handleClick}
+      isSelected={isSelected}
+      isCurrent={isCurrent}
+      isCurrentMonth={isCurrentMonth}
+      isWeekend={isWeekend}
+      isHoliday={isHoliday}
+      isInValidRange={isInValidRange}
+    >
+      {date.getDate()}
+    </Cell>
   );
 };

@@ -7,7 +7,7 @@ const INPUT_BORDER_COLOR = '#dddddd';
 const INPUT_BORDER_SIZE = 1;
 
 const INPUT_TEXT_COLOR = '#333333';
-const INPUT_PLACEHOLDER_COLOR = '#bbbbbb';
+//const INPUT_PLACEHOLDER_COLOR = '#bbbbbb';
 
 const INPUT_HORIZONTAL_PADDINGS = 16;
 
@@ -21,6 +21,7 @@ export const InputContainer = styled.div`
   justify-content: space-between;
   padding-left: ${INPUT_HORIZONTAL_PADDINGS}px;
   padding-right: ${INPUT_HORIZONTAL_PADDINGS}px;
+  background-color: ${(props) => props.theme.backgroundColor};
 `;
 
 export const Input = styled.input`
@@ -31,6 +32,6 @@ export const Input = styled.input`
   background-color: transparent;
 
   &::placeholder {
-    color: ${INPUT_PLACEHOLDER_COLOR};
+    opacity: 0.5;
   }
 `;

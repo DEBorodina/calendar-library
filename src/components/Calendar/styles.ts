@@ -20,4 +20,5 @@ export const Calendar = styled.div`
   border-width: ${CALENDAR_BORDER_WIDTH}px;
   border-style: solid;
   padding: ${CALENDAR_PADDING}px;
+  background-color: ${(props) => props.theme.backgroundColor};
 `;
