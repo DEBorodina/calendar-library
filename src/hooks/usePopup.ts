@@ -16,7 +16,7 @@ export const usePopup = (): [
   }, []);
 
   const handleClickOutside = ({ target }: MouseEvent) => {
-    if (!popUp.current.contains(target as Node)) {
+    if (popUp.current && !popUp.current.contains(target as Node)) {
       setShowPopup(false);
     }
   };

@@ -9,6 +9,7 @@ export const CalendarGrid = styled.div`
 `;
 
 export const Container = styled(MonthCalendarCell)`
+  position: relative;
   font-size: ${(props) => props.theme.size.fontSize}px;
   margin: 0 auto;
 `;

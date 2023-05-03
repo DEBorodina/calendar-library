@@ -34,6 +34,10 @@ export class DecoratorService {
     calendar.startDate = startDate;
   };
 
+  protected static withToDoList = (calendar: ICalendar) => {
+    calendar.withToDoList = true;
+  };
+
   protected static weekCalendar = (calendar: ICalendar) => {
     weekCalendarDecorator(calendar);
   };
@@ -50,7 +54,8 @@ export class DecoratorService {
     minDate: Date,
     maxDate: Date,
     endDate: Date,
-    startDate: Date
+    startDate: Date,
+    withToDoList: boolean
   ) => {
     const calendar: ICalendar = new BaseCalendar();
 
@@ -68,6 +73,7 @@ export class DecoratorService {
     if (endDate) DecoratorService.withEndDate(calendar, endDate);
     if (startDate) DecoratorService.withStartDate(calendar, startDate);
 
+    if (withToDoList) DecoratorService.withToDoList(calendar);
     return calendar;
   };
 }

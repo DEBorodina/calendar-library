@@ -20,6 +20,7 @@ export const MonthCalendarGrid: React.FC<MonthCalendarProps> = ({
   maxDate,
   endDate,
   startDate,
+  withToDoList,
 }) => {
   const dateCells = useMemo(() => {
     return MonthCalendarHelper.getMonthToDisplay(
@@ -39,11 +40,12 @@ export const MonthCalendarGrid: React.FC<MonthCalendarProps> = ({
       {weekDaysToDisplay.map((day) => (
         <MonthCalendarCell key={day}>{day}</MonthCalendarCell>
       ))}
-      {dateCells.map((date) => {
+      {dateCells.map((date, index) => {
         const key = `${date.getDate()}\\${date.getMonth()}`;
         return (
           <Container key={key}>
             <MonthCalendarDay
+              index={index % 7}
               onClick={onChange}
               date={date}
               selectedDate={value}
@@ -54,6 +56,7 @@ export const MonthCalendarGrid: React.FC<MonthCalendarProps> = ({
               maxDate={maxDate}
               endDate={endDate}
               startDate={startDate}
+              withToDoList={withToDoList}
             />
           </Container>
         );

@@ -8,12 +8,18 @@ const DATE_COLOR = '#333333';
 const SELECTED_DATE_COLOR = '#FFFFFF';
 
 const CURRENT_DATE_BACKGROUND_COLOR = '#F1F1F1';
-//const SELECTED_DATE_BACKGROUND_COLOR = '#2F80ED';
 
-//const CELL_SIZE = 30; //100; //30
-//const FONT_SIZE = 16; //54; //16
+export const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const Cell = styled.div<CellProps>`
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;

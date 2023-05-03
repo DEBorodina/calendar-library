@@ -29,6 +29,7 @@ export const Primary: Story = {
     defaultValue: new Date(2023, 4, 5),
     minDate: new Date(2023, 4, 1),
     maxDate: new Date(2023, 4, 7),
+    withToDoList: true,
     onChange: (date) => {
       console.log('onchange', date);
     },

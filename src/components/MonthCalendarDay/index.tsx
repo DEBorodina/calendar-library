@@ -1,9 +1,11 @@
 import React from 'react';
 
+import { usePopup } from '@/hooks';
 import { CalendarHelper } from '@/utils/CalendarHelper';
 import { DateValidator } from '@/utils/DateValidator';
 
-import { Cell } from './styles';
+import { ToDoList } from '../ToDoList';
+import { Cell, Wrapper } from './styles';
 import { MonthCalendarDayProps } from './types';
 
 export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
@@ -17,7 +19,11 @@ export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
   maxDate,
   endDate,
   startDate,
+  withToDoList,
+  index,
 }) => {
+  const [popUp, showPopup, setShowPopup] = usePopup();
+
   const currentDate = new Date(Date.now());
 
   const isSelected = CalendarHelper.isDatesEqual(date, selectedDate);
@@ -36,9 +42,7 @@ export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
   const isInValidRange = DateValidator.isInValidRange(date, minDate, maxDate);
 
   let isWeekend = false;
-  if (showWeekends) {
-    isWeekend = date.getDay() === 0 || date.getDay() === 6;
-  }
+  if (showWeekends) isWeekend = date.getDay() === 0 || date.getDay() === 6;
 
   let isHoliday = false;
   if (holidays) {
@@ -49,7 +53,6 @@ export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
   }
 
   let isInRange = false;
-
   if (!isSelected && !isStartValue && !isEndValue && selectedDate) {
     if (
       startDate &&
@@ -62,25 +65,34 @@ export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
   }
 
   const handleClick = () => {
-    if (isInValidRange) {
-      onClick(date);
-    }
+    if (isInValidRange) onClick(date);
+  };
+
+  const onMouseEnter = () => {
+    if (withToDoList) setShowPopup(true);
+  };
+
+  const onMouseOver = () => {
+    if (withToDoList) setShowPopup(false);
   };
 
   return (
-    <Cell
-      onClick={handleClick}
-      isSelected={isSelected}
-      isCurrent={isCurrent}
-      isCurrentMonth={isCurrentMonth}
-      isWeekend={isWeekend}
-      isHoliday={isHoliday}
-      isInValidRange={isInValidRange}
-      isInRange={isInRange}
-      isEndValue={isEndValue}
-      isStartValue={isStartValue}
-    >
-      {date.getDate()}
-    </Cell>
+    <Wrapper ref={popUp} onMouseEnter={onMouseEnter} onMouseLeave={onMouseOver}>
+      <Cell
+        onClick={handleClick}
+        isSelected={isSelected}
+        isCurrent={isCurrent}
+        isCurrentMonth={isCurrentMonth}
+        isWeekend={isWeekend}
+        isHoliday={isHoliday}
+        isInValidRange={isInValidRange}
+        isInRange={isInRange}
+        isEndValue={isEndValue}
+        isStartValue={isStartValue}
+      >
+        {date.getDate()}
+      </Cell>
+      {showPopup && <ToDoList date={date} index={index} />}
+    </Wrapper>
   );
 };

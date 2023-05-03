@@ -9,6 +9,8 @@ export interface MonthCalendarDayProps extends RangeCalendarProps {
   holidays: Date[];
   minDate?: Date;
   maxDate?: Date;
+  withToDoList: boolean;
+  index: number;
 }
 
 export interface CellProps {

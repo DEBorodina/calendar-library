@@ -31,7 +31,8 @@ const configState = (
   minDate: Date,
   maxDate: Date,
   endDate: Date,
-  startDate: Date
+  startDate: Date,
+  withToDoList: boolean
 ) => {
   const calendar = DecoratorService.configCalendar(
     type,
@@ -41,7 +42,8 @@ const configState = (
     minDate,
     maxDate,
     endDate,
-    startDate
+    startDate,
+    withToDoList
   );
   return calendar.getState();
 };
@@ -57,6 +59,7 @@ export const Calendar: React.FC<MonthCalendarProps & RangeCalendarProps> = ({
   maxDate,
   endDate,
   startDate,
+  withToDoList,
 }) => {
   const [state, setState] = useState(
     configState(
@@ -67,7 +70,8 @@ export const Calendar: React.FC<MonthCalendarProps & RangeCalendarProps> = ({
       minDate,
       maxDate,
       endDate,
-      startDate
+      startDate,
+      withToDoList
     )
   );
 
@@ -80,7 +84,8 @@ export const Calendar: React.FC<MonthCalendarProps & RangeCalendarProps> = ({
       minDate,
       maxDate,
       endDate,
-      startDate
+      startDate,
+      withToDoList
     );
     setState(calendar.getState(value));
 
@@ -95,6 +100,7 @@ export const Calendar: React.FC<MonthCalendarProps & RangeCalendarProps> = ({
     value,
     endDate,
     startDate,
+    withToDoList,
   ]);
 
   const CalendarGrid = useMemo(() => {

@@ -24,6 +24,7 @@ export interface CalendarAutoProps {
   holidays: Date[];
   minDate: Date | null;
   maxDate: Date | null;
+  withToDoList: boolean;
 }
 
 export interface CalendarExtraProps {
@@ -46,6 +47,7 @@ export class BaseCalendar implements ICalendar {
   public maxDate: Date | null = null;
   public endDate: Date | null = null;
   public startDate: Date | null = null;
+  public withToDoList = false;
 
   public getState(value?: Date): CalendarState {
     if (!value) value = new Date(Date.now());
@@ -106,6 +108,7 @@ export class BaseCalendar implements ICalendar {
           maxDate={this.maxDate}
           endDate={this.endDate}
           startDate={this.startDate}
+          withToDoList={this.withToDoList}
         />
       );
     };

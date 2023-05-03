@@ -10,4 +10,5 @@ export interface MonthCalendarProps extends RangeCalendarProps {
   holidays: Date[];
   minDate: Date;
   maxDate: Date;
+  withToDoList: boolean;
 }
