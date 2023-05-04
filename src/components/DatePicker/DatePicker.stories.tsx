@@ -18,13 +18,13 @@ export const Primary: Story = {
       control: { type: 'radio' },
     },
     weekStart: {
-      options: ['monday', 'sunday'],
+      options: [1, 0],
       control: { type: 'radio' },
     },
   },
   args: {
     type: 'week',
-    weekStart: 'monday',
+    weekStart: 1,
     showWeekends: true,
     defaultValue: new Date(2023, 4, 5),
     minDate: new Date(2023, 4, 1),

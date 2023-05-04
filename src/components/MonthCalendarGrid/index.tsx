@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 
-import { daysOfWeek } from '@/constants/daysOfWeek';
 import { MonthCalendarCell } from '@/styles/common';
 import { MonthCalendarHelper } from '@/utils/MonthCalendarHelper';
+import { WeekCalendarHelper } from '@/utils/WeekCalendarHelper';
 
 import { MonthCalendarDay } from '../MonthCalendarDay';
 import { CalendarGrid, Container } from './styles';
@@ -14,13 +14,7 @@ export const MonthCalendarGrid: React.FC<MonthCalendarProps> = ({
   value,
   onChange,
   weekStart,
-  showWeekends,
-  holidays,
-  minDate,
-  maxDate,
-  endDate,
-  startDate,
-  withToDoList,
+  ...settings
 }) => {
   const dateCells = useMemo(() => {
     return MonthCalendarHelper.getMonthToDisplay(
@@ -30,10 +24,10 @@ export const MonthCalendarGrid: React.FC<MonthCalendarProps> = ({
     );
   }, [panelMonth, panelYear, weekStart]);
 
-  const weekDaysToDisplay = useMemo(() => {
-    if (weekStart === 1) return [...daysOfWeek.slice(1), daysOfWeek[0]];
-    else return daysOfWeek;
-  }, [weekStart]);
+  const weekDaysToDisplay = useMemo(
+    () => WeekCalendarHelper.getWeekDaysNamesToDisplay(weekStart),
+    [weekStart]
+  );
 
   return (
     <CalendarGrid>
@@ -41,22 +35,15 @@ export const MonthCalendarGrid: React.FC<MonthCalendarProps> = ({
         <MonthCalendarCell key={day}>{day}</MonthCalendarCell>
       ))}
       {dateCells.map((date, index) => {
-        const key = `${date.getDate()}\\${date.getMonth()}`;
         return (
-          <Container key={key}>
+          <Container key={date.getTime()}>
             <MonthCalendarDay
               index={index % 7}
               onClick={onChange}
               date={date}
               selectedDate={value}
               panelMonth={panelMonth}
-              showWeekends={showWeekends}
-              holidays={holidays}
-              minDate={minDate}
-              maxDate={maxDate}
-              endDate={endDate}
-              startDate={startDate}
-              withToDoList={withToDoList}
+              {...settings}
             />
           </Container>
         );

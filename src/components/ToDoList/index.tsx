@@ -1,27 +1,17 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 import { months } from '@/constants/months';
-import { addToLocalStorage, getFromLocalStorage } from '@/utils/localStoraage';
+import { addToLocalStorage, getFromLocalStorage } from '@/utils/localStorage';
 
 import { AddToDoForm } from '../AddToDoForm';
 import { TodoItem } from '../ToDoItem';
-import { Container, Title } from './styles';
-import { ToDoListProps } from './types';
-
-export interface ToDo {
-  id: number;
-  text: string;
-  isDone: boolean;
-}
-
-const getInitialTodos = (date: Date): ToDo[] => {
-  return getFromLocalStorage(`todos${date.getTime()}`)
-    ? getFromLocalStorage(`todos${date.getTime()}`)
-    : [];
-};
+import { Container } from './styles';
+import { ToDo, ToDoListProps } from './types';
 
 export const ToDoList: React.FC<ToDoListProps> = ({ date, index }) => {
-  const [todos, setTodos] = useState(getInitialTodos(date));
+  const [todos, setTodos] = useState(
+    (getFromLocalStorage(`todos${date.getTime()}`) as ToDo[]) ?? []
+  );
 
   const addToDo = (todo: string) => {
     const newTodo = {
@@ -43,9 +33,9 @@ export const ToDoList: React.FC<ToDoListProps> = ({ date, index }) => {
     addToLocalStorage(`todos${date.getTime()}`, newTodos);
   };
 
-  const toggleIsDone = (doneId: number) => {
+  const toggleIsDone = (toggleId: number) => {
     const newTodos = todos.map((task) => {
-      if (task.id === doneId) {
+      if (task.id === toggleId) {
         return { ...task, isDone: !task.isDone };
       }
       return task;
@@ -55,20 +45,22 @@ export const ToDoList: React.FC<ToDoListProps> = ({ date, index }) => {
     addToLocalStorage(`todos${date.getTime()}`, newTodos);
   };
 
+  const toDoList = useMemo(() => {
+    return todos.map((todo) => (
+      <TodoItem
+        key={todo.id}
+        todo={todo}
+        deleteToDo={deleteToDo}
+        toggleIsDone={toggleIsDone}
+      />
+    ));
+  }, [todos]);
+
   return (
     <Container index={index}>
-      <Title>{`${date.getDate()} ${months[date.getMonth()]}`}</Title>
+      <p>{`${date.getDate()} ${months[date.getMonth()]}`}</p>
       <AddToDoForm addToDo={addToDo} />
-      {todos.length > 0
-        ? todos.map((todo) => (
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              deleteToDo={deleteToDo}
-              toggleIsDone={toggleIsDone}
-            />
-          ))
-        : 'No todos yet'}
+      {toDoList.length > 0 ? toDoList : 'No todos yet'}
     </Container>
   );
 };

@@ -1,42 +1,8 @@
 import React from 'react';
 
-import { RangeCalendarProps } from '@/components/Calendar';
 import { MonthCalendarGrid } from '@/components/MonthCalendarGrid';
 
-export interface ICalendar extends CalendarAutoProps, RangeCalendarProps {
-  handlePrevious: (state: CalendarState) => CalendarState;
-  handleNext: (state: CalendarState) => CalendarState;
-  getState: (value?: Date) => CalendarState;
-  getGrid: () => React.FC<CalendarState & CalendarExtraProps>;
-  grid: React.FC<CalendarProps>;
-}
-
-export interface CalendarState {
-  panelMonth: number;
-  panelYear: number;
-  panelWeek?: number;
-  panelValue?: Date;
-}
-
-export interface CalendarAutoProps {
-  weekStart: 0 | 1;
-  showWeekends: boolean;
-  holidays: Date[];
-  minDate: Date | null;
-  maxDate: Date | null;
-  withToDoList: boolean;
-}
-
-export interface CalendarExtraProps {
-  value: Date;
-  onChange: (date: Date) => void;
-}
-
-export interface CalendarProps
-  extends CalendarAutoProps,
-    CalendarExtraProps,
-    RangeCalendarProps,
-    CalendarState {}
+import { CalendarExtraProps, CalendarState, ICalendar } from './types';
 
 export class BaseCalendar implements ICalendar {
   public weekStart: 0 | 1 = 0;

@@ -1,14 +1,7 @@
-import { RangeCalendarProps } from '../Calendar';
+import { CalendarProps } from '../Calendar/types';
 
-export interface MonthCalendarProps extends RangeCalendarProps {
+export interface MonthCalendarProps
+  extends Omit<Required<CalendarProps>, 'type'> {
   panelYear: number;
   panelMonth: number;
-  value: Date;
-  onChange: (date: Date) => void;
-  weekStart: 0 | 1;
-  showWeekends: boolean;
-  holidays: Date[];
-  minDate: Date;
-  maxDate: Date;
-  withToDoList: boolean;
 }

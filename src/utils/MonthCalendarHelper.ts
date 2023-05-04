@@ -16,10 +16,6 @@ export class MonthCalendarHelper {
       dateCells.push(CalendarHelper.createDateWithFullYear(year, month, day));
     });
 
-    /*for (let i = 1; i <= currentMonthDaysAmount; i++) {
-      dateCells.push(CalendarHelper.createDateWithFullYear(year, month, i));
-    }*/
-
     return dateCells;
   };
 
@@ -45,10 +41,6 @@ export class MonthCalendarHelper {
     days.forEach((day) => {
       dateCells.push(CalendarHelper.createDateWithFullYear(year, month, -day));
     });
-
-    /*for (let i = currentMonthFirstDay - 1; i >= 0; i--) {
-      dateCells.push(CalendarHelper.createDateWithFullYear(year, month, -i));
-    }*/
 
     return dateCells;
   };
@@ -91,19 +83,6 @@ export class MonthCalendarHelper {
         )
       );
     });
-
-    /*let i = 1;
-    while (totalCellsAmount % 7 !== 0) {
-      dateCells.push(
-        CalendarHelper.createDateWithFullYear(
-          year,
-          month,
-          currentMonthDaysAmount + i
-        )
-      );
-      totalCellsAmount += 1;
-      i++;
-    }*/
 
     return dateCells;
   };

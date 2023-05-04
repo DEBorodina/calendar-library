@@ -1,40 +1,23 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import { months } from '@/constants/months';
 import { DecoratorService } from '@/utils/decorators/DecoratorService';
 
 import { ControlPanel } from '../ControlPanel';
 import { Container, Wrapper } from './styles';
+import { CalendarProps } from './types';
 
-export interface MonthCalendarProps {
-  value: Date;
-  onChange: (value: Date) => void;
-  type: 'week' | 'month' | 'day';
-  weekStart?: 'monday' | 'sunday';
-  showWeekends?: boolean;
-  holidays?: Date[];
-  minDate?: Date;
-  maxDate?: Date;
-  withToDoList: boolean;
-}
+export const Calendar: React.FC<CalendarProps> = ({
+  value,
+  onChange,
+  ...settings
+}) => {
+  const [calendar, setCalendar] = useState(
+    DecoratorService.configCalendar(settings)
+  );
+  const [panelState, setPanelState] = useState(calendar.getState());
 
-export interface RangeCalendarProps {
-  endDate?: Date;
-  startDate?: Date;
-}
-
-const configState = (
-  type: 'day' | 'week' | 'month',
-  weekStart: 'monday' | 'sunday',
-  showWeekends: boolean,
-  holidays: Date[],
-  minDate: Date,
-  maxDate: Date,
-  endDate: Date,
-  startDate: Date,
-  withToDoList: boolean
-) => {
-  const calendar = DecoratorService.configCalendar(
+  const {
     type,
     weekStart,
     showWeekends,
@@ -43,53 +26,12 @@ const configState = (
     maxDate,
     endDate,
     startDate,
-    withToDoList
-  );
-  return calendar.getState();
-};
-
-export const Calendar: React.FC<MonthCalendarProps & RangeCalendarProps> = ({
-  value,
-  onChange,
-  type,
-  weekStart,
-  showWeekends,
-  holidays,
-  minDate,
-  maxDate,
-  endDate,
-  startDate,
-  withToDoList,
-}) => {
-  const [state, setState] = useState(
-    configState(
-      type,
-      weekStart,
-      showWeekends,
-      holidays,
-      minDate,
-      maxDate,
-      endDate,
-      startDate,
-      withToDoList
-    )
-  );
-
-  const calendar = useMemo(() => {
-    const calendar = DecoratorService.configCalendar(
-      type,
-      weekStart,
-      showWeekends,
-      holidays,
-      minDate,
-      maxDate,
-      endDate,
-      startDate,
-      withToDoList
-    );
-    setState(calendar.getState(value));
-
-    return calendar;
+    withToDoList,
+  } = settings;
+  useEffect(() => {
+    const newCalendar = DecoratorService.configCalendar(settings);
+    setCalendar(newCalendar);
+    setPanelState(newCalendar.getState(value));
   }, [
     type,
     weekStart,
@@ -97,7 +39,6 @@ export const Calendar: React.FC<MonthCalendarProps & RangeCalendarProps> = ({
     holidays,
     minDate,
     maxDate,
-    value,
     endDate,
     startDate,
     withToDoList,
@@ -108,23 +49,24 @@ export const Calendar: React.FC<MonthCalendarProps & RangeCalendarProps> = ({
   }, [calendar]);
 
   const handlePrevious = () => {
-    const newState = calendar.handlePrevious(state);
-    setState(newState);
+    const newState = calendar.handlePrevious(panelState);
+    setPanelState(newState);
   };
 
   const handleNext = () => {
-    const newState = calendar.handleNext(state);
-    setState(newState);
+    const newState = calendar.handleNext(panelState);
+    setPanelState(newState);
   };
+
   return (
     <Wrapper>
       <Container>
         <ControlPanel
           handlePrevious={handlePrevious}
           handleNext={handleNext}
-          title={`${months[state.panelMonth]} ${state.panelYear}`}
+          title={`${months[panelState.panelMonth]} ${panelState.panelYear}`}
         />
-        <CalendarGrid {...state} onChange={onChange} value={value} />
+        <CalendarGrid {...panelState} onChange={onChange} value={value} />
       </Container>
     </Wrapper>
   );

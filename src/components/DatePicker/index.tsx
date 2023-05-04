@@ -14,20 +14,14 @@ import { DatePickerProps } from './types';
 export const DatePicker: React.FC<DatePickerProps> = ({
   defaultValue = null,
   onChange,
-  label,
-  type,
-  weekStart,
-  showWeekends,
-  holidays,
-  minDate,
-  maxDate,
   mainColor,
   holidayColor,
   errorColor,
   size,
-  startDate,
-  endDate,
-  withToDoList,
+  label,
+  minDate,
+  maxDate,
+  ...props
 }) => {
   const [popUp, showPopup, setShowPopup] = usePopup();
   const [value, setValue] = useState(defaultValue);
@@ -49,14 +43,14 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     return theme;
   }, [mainColor, holidayColor, size, errorColor]);
 
-  useEffect(() => {
-    setValue(defaultValue);
-  }, [defaultValue]);
-
   const handleChange = (date: Date) => {
     setValue(date);
     onChange(date);
   };
+
+  useEffect(() => {
+    setValue(defaultValue);
+  }, [defaultValue]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -74,17 +68,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         <ErrorText>{errors}</ErrorText>
         {showPopup && (
           <Calendar
-            type={type}
             onChange={handleChange}
             value={value}
-            weekStart={weekStart}
-            showWeekends={showWeekends}
-            holidays={holidays}
             minDate={minDate}
             maxDate={maxDate}
-            startDate={startDate}
-            endDate={endDate}
-            withToDoList={withToDoList}
+            {...props}
           />
         )}
       </Container>

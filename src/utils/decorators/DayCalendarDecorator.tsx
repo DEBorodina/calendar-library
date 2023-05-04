@@ -1,6 +1,6 @@
 import { DayCalendarGrid } from '@/components/DayCalendarGrid';
 
-import { CalendarState, ICalendar } from './BaseCalendar';
+import { CalendarState, ICalendar } from './types';
 
 export const dayCalendarDecorator = (calendar: ICalendar) => {
   calendar.grid = DayCalendarGrid;

@@ -1,6 +1,7 @@
-export interface DayCalendarProps {
-  value: Date;
-  onChange: (value: Date) => void;
-  min?: Date;
-  max?: Date;
+import { CalendarProps } from '../Calendar/types';
+
+export interface DayCalendarProps
+  extends Omit<Required<CalendarProps>, 'type'> {
+  panelValue: Date;
+  panelMonth: number;
 }

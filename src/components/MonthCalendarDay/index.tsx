@@ -26,19 +26,9 @@ export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
 
   const currentDate = new Date(Date.now());
 
-  const isSelected = CalendarHelper.isDatesEqual(date, selectedDate);
-
-  let isEndValue = false;
-  if (endDate && CalendarHelper.isDatesEqual(endDate, date)) isEndValue = true;
-  if (isSelected && startDate) isEndValue = true;
-
-  let isStartValue = false;
-  if (startDate && CalendarHelper.isDatesEqual(startDate, date))
-    isStartValue = true;
-  if (isSelected && endDate) isStartValue = true;
-
   const isCurrent = CalendarHelper.isDatesEqual(date, currentDate);
-  const isCurrentMonth = date.getMonth() === panelMonth;
+  const isSelected = CalendarHelper.isDatesEqual(date, selectedDate);
+  const isSelectedMonth = date.getMonth() === panelMonth;
   const isInValidRange = DateValidator.isInValidRange(date, minDate, maxDate);
 
   let isWeekend = false;
@@ -52,7 +42,17 @@ export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
     isHoliday = holiday ? true : false;
   }
 
+  let isEndValue = false;
+  let isStartValue = false;
   let isInRange = false;
+
+  if (endDate && CalendarHelper.isDatesEqual(endDate, date)) isEndValue = true;
+  if (isSelected && startDate) isEndValue = true;
+
+  if (startDate && CalendarHelper.isDatesEqual(startDate, date))
+    isStartValue = true;
+  if (isSelected && endDate) isStartValue = true;
+
   if (!isSelected && !isStartValue && !isEndValue && selectedDate) {
     if (
       startDate &&
@@ -82,7 +82,7 @@ export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
         onClick={handleClick}
         isSelected={isSelected}
         isCurrent={isCurrent}
-        isCurrentMonth={isCurrentMonth}
+        isSelectedMonth={isSelectedMonth}
         isWeekend={isWeekend}
         isHoliday={isHoliday}
         isInValidRange={isInValidRange}

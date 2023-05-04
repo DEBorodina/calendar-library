@@ -1,6 +1,10 @@
-import { BaseCalendar, ICalendar } from './BaseCalendar';
+// eslint-disable-next-line simple-import-sort/imports
+import { CalendarSettings } from '@/components/DatePicker/types';
+
+import { BaseCalendar } from './BaseCalendar';
 import { dayCalendarDecorator } from './DayCalendarDecorator';
 import { weekCalendarDecorator } from './WeekCalendarDecorator';
+import { ICalendar } from './types';
 
 export class DecoratorService {
   protected static withWeekStartMonday = (calendar: ICalendar) => {
@@ -46,23 +50,25 @@ export class DecoratorService {
     dayCalendarDecorator(calendar);
   };
 
-  public static configCalendar = (
-    type: 'day' | 'week' | 'month',
-    weekStart: 'monday' | 'sunday',
-    showWeekends: boolean,
-    holidays: Date[],
-    minDate: Date,
-    maxDate: Date,
-    endDate: Date,
-    startDate: Date,
-    withToDoList: boolean
-  ) => {
+  public static configCalendar = (settings: CalendarSettings) => {
+    const {
+      type,
+      weekStart,
+      showWeekends,
+      holidays,
+      minDate,
+      maxDate,
+      endDate,
+      startDate,
+      withToDoList,
+    } = settings;
+
     const calendar: ICalendar = new BaseCalendar();
 
     if (type === 'week') DecoratorService.weekCalendar(calendar);
     if (type === 'day') DecoratorService.dayCalendar(calendar);
 
-    if (weekStart === 'monday') DecoratorService.withWeekStartMonday(calendar);
+    if (weekStart === 1) DecoratorService.withWeekStartMonday(calendar);
 
     if (showWeekends) DecoratorService.withShowWeekends(calendar);
     if (holidays) DecoratorService.withShowHolidays(calendar, holidays);

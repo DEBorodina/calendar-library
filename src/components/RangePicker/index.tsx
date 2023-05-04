@@ -11,17 +11,10 @@ export const RangePicker: React.FC<RangePickerProps> = ({
   defaultStartDate = null,
   defaultEndDate = null,
   label,
-  type,
-  weekStart,
-  showWeekends,
-  holidays,
   minDate,
   maxDate,
-  mainColor,
-  holidayColor,
-  errorColor,
-  size,
   onChange,
+  ...settings
 }) => {
   if (!CalendarHelper.isDateLess(defaultStartDate, defaultEndDate)) {
     throw new Error(
@@ -56,40 +49,25 @@ export const RangePicker: React.FC<RangePickerProps> = ({
 
   return (
     <>
-      {' '}
       <Label>{label}</Label>
       <Container>
         <DatePicker
           defaultValue={startDate}
           onChange={handleStartDate}
           label={'From'}
-          weekStart={weekStart}
-          showWeekends={showWeekends}
-          holidays={holidays}
           minDate={minDate}
           maxDate={endDate ? endDate : maxDate}
-          mainColor={mainColor}
-          holidayColor={holidayColor}
-          errorColor={errorColor}
           endDate={endDate}
-          size={size}
-          type={type}
+          {...settings}
         />
         <DatePicker
           defaultValue={endDate}
           onChange={handleEndDate}
           label={'To'}
-          weekStart={weekStart}
-          showWeekends={showWeekends}
-          holidays={holidays}
           minDate={startDate ? startDate : minDate}
           maxDate={maxDate}
-          mainColor={mainColor}
-          holidayColor={holidayColor}
-          errorColor={errorColor}
           startDate={startDate}
-          size={size}
-          type={type}
+          {...settings}
         />
       </Container>
     </>

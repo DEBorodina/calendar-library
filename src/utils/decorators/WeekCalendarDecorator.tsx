@@ -1,7 +1,7 @@
 import { WeekCalendarGrid } from '@/components/WeekCalendarGrid';
 
 import { WeekCalendarHelper } from '../WeekCalendarHelper';
-import { CalendarState, ICalendar } from './BaseCalendar';
+import { CalendarState, ICalendar } from './types';
 
 export const weekCalendarDecorator = (calendar: ICalendar) => {
   calendar.grid = WeekCalendarGrid;

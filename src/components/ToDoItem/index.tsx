@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Icons } from '@/constants/icons';
 
-import { ToDo } from '../ToDoList';
 import {
   Button,
   ButtonContainer,
@@ -11,29 +10,26 @@ import {
   DoneButtonWithMark,
   Text,
 } from './styles';
+import { TodoItemProps } from './types';
 
-export interface TodoItemProps {
-  deleteToDo: (id: number) => void;
-  toggleIsDone: (id: number) => void;
-  todo: ToDo;
-}
 export const TodoItem: React.FC<TodoItemProps> = ({
-  todo,
+  todo: { id, text, isDone },
   toggleIsDone,
   deleteToDo,
 }) => {
   const handleDelete = () => {
-    deleteToDo(todo.id);
+    deleteToDo(id);
   };
 
   const handleIsDone = () => {
-    toggleIsDone(todo.id);
+    toggleIsDone(id);
   };
+
   return (
     <Container>
-      <Text>{todo.text}</Text>
+      <Text>{text}</Text>
       <ButtonContainer>
-        {todo.isDone ? (
+        {isDone ? (
           <DoneButtonWithMark onClick={handleIsDone}></DoneButtonWithMark>
         ) : (
           <DoneButton onClick={handleIsDone}></DoneButton>

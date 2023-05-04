@@ -1,7 +1,7 @@
 import { CalendarHelper } from './CalendarHelper';
 
 export class DateValidator {
-  static isInputFormatValid = (dateInput: string): boolean => {
+  public static isInputFormatValid = (dateInput: string): boolean => {
     const validInputDateRegex = /^\d{2}\/\d{2}\/\d{1,4}$/;
     if (!validInputDateRegex.test(dateInput)) return false;
 
@@ -29,11 +29,23 @@ export class DateValidator {
     return true;
   };
 
-  static isInputDateValid = (
+  public static isInValidRange(
+    date: Date,
+    minDate: Date,
+    maxDate: Date
+  ): boolean {
+    if (date && minDate && CalendarHelper.isDateLess(date, minDate))
+      return false;
+    if (date && maxDate && CalendarHelper.isDateLess(maxDate, date))
+      return false;
+    return true;
+  }
+
+  public static isInputDateValid = (
     dateInput: string,
     minDate: Date,
     maxDate: Date
-  ) => {
+  ): boolean => {
     if (!DateValidator.isInputFormatValid(dateInput)) return false;
 
     const [day, month, year] = dateInput.split('/').map((s) => Number(s));
@@ -43,12 +55,4 @@ export class DateValidator {
 
     return true;
   };
-
-  static isInValidRange(date: Date, minDate: Date, maxDate: Date) {
-    if (date && minDate && CalendarHelper.isDateLess(date, minDate))
-      return false;
-    if (date && maxDate && CalendarHelper.isDateLess(maxDate, date))
-      return false;
-    return true;
-  }
 }

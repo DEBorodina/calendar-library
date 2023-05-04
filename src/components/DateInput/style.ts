@@ -7,7 +7,6 @@ const INPUT_BORDER_COLOR = '#dddddd';
 const INPUT_BORDER_SIZE = 1;
 
 const INPUT_TEXT_COLOR = '#333333';
-//const INPUT_PLACEHOLDER_COLOR = '#bbbbbb';
 
 const INPUT_HORIZONTAL_PADDINGS = 16;
 

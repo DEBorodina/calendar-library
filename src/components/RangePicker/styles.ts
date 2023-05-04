@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const TEXT_COLOR = '#333333';
+const LABEL_FONT_SIZE = 16;
+const LABEL_MARGIN_BOTTOM = 10;
 
 export const Container = styled.div`
   position: relative;
@@ -9,7 +11,7 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.p`
-  font-size: 16px;
+  font-size: ${LABEL_FONT_SIZE}px;
   color: ${TEXT_COLOR};
-  margin-bottom: 10px;
+  margin-bottom: ${LABEL_MARGIN_BOTTOM}px;
 `;

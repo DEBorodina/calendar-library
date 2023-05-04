@@ -1,4 +1,4 @@
-import { RangeCalendarProps } from '../Calendar';
+import { RangeCalendarProps } from '../Calendar/types';
 
 export interface MonthCalendarDayProps extends RangeCalendarProps {
   date: Date;
@@ -16,7 +16,7 @@ export interface MonthCalendarDayProps extends RangeCalendarProps {
 export interface CellProps {
   isSelected: boolean;
   isCurrent: boolean;
-  isCurrentMonth: boolean;
+  isSelectedMonth: boolean;
   isWeekend: boolean;
   isHoliday: boolean;
   isInValidRange: boolean;

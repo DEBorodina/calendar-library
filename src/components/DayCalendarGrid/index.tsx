@@ -1,41 +1,24 @@
 import React from 'react';
 
-import { CalendarProps } from '@/utils/decorators/BaseCalendar';
-
 import { MonthCalendarDay } from '../MonthCalendarDay';
 import { Container, Wrapper } from './styles';
+import { DayCalendarProps } from './types';
 
-export const DayCalendarGrid: React.FC<CalendarProps> = ({
+export const DayCalendarGrid: React.FC<DayCalendarProps> = ({
   panelValue,
-  panelMonth,
   value,
   onChange,
-  showWeekends,
-  holidays,
-  minDate,
-  maxDate,
-  endDate,
-  startDate,
-  withToDoList,
-}) => {
-  return (
-    <Wrapper>
-      <Container>
-        <MonthCalendarDay
-          index={0}
-          date={panelValue}
-          selectedDate={value}
-          panelMonth={panelMonth}
-          onClick={onChange}
-          showWeekends={showWeekends}
-          holidays={holidays}
-          minDate={minDate}
-          maxDate={maxDate}
-          endDate={endDate}
-          startDate={startDate}
-          withToDoList={withToDoList}
-        />
-      </Container>
-    </Wrapper>
-  );
-};
+  ...settings
+}) => (
+  <Wrapper>
+    <Container>
+      <MonthCalendarDay
+        index={0}
+        date={panelValue}
+        selectedDate={value}
+        onClick={onChange}
+        {...settings}
+      />
+    </Container>
+  </Wrapper>
+);

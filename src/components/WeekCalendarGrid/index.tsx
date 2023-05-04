@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 
-import { daysOfWeek } from '@/constants/daysOfWeek';
 import { MonthCalendarCell } from '@/styles/common';
 import { WeekCalendarHelper } from '@/utils/WeekCalendarHelper';
 
@@ -15,13 +14,7 @@ export const WeekCalendarGrid: React.FC<WeekCalendarProps> = ({
   value,
   onChange,
   weekStart,
-  showWeekends,
-  holidays,
-  minDate,
-  maxDate,
-  endDate,
-  startDate,
-  withToDoList,
+  ...settings
 }) => {
   const dateCells = useMemo(() => {
     return WeekCalendarHelper.getWeekToDisplay(
@@ -32,10 +25,10 @@ export const WeekCalendarGrid: React.FC<WeekCalendarProps> = ({
     );
   }, [panelMonth, panelYear, panelWeek, weekStart]);
 
-  const weekDaysToDisplay = useMemo(() => {
-    if (weekStart === 1) return [...daysOfWeek.slice(1), daysOfWeek[0]];
-    else return daysOfWeek;
-  }, [weekStart]);
+  const weekDaysToDisplay = useMemo(
+    () => WeekCalendarHelper.getWeekDaysNamesToDisplay(weekStart),
+    [weekStart]
+  );
 
   return (
     <CalendarGrid>
@@ -43,22 +36,15 @@ export const WeekCalendarGrid: React.FC<WeekCalendarProps> = ({
         <MonthCalendarCell key={day}>{day}</MonthCalendarCell>
       ))}
       {dateCells.map((date, index) => {
-        const key = `${date.getDate()}\\${date.getMonth()}`;
         return (
-          <Container key={key}>
+          <Container key={date.getTime()}>
             <MonthCalendarDay
               index={index % 7}
               onClick={onChange}
               date={date}
               selectedDate={value}
               panelMonth={panelMonth}
-              showWeekends={showWeekends}
-              holidays={holidays}
-              minDate={minDate}
-              maxDate={maxDate}
-              endDate={endDate}
-              startDate={startDate}
-              withToDoList={withToDoList}
+              {...settings}
             />
           </Container>
         );

@@ -27,7 +27,7 @@ export const Primary: Story = {
   },
   args: {
     type: 'week',
-    weekStart: 'monday',
+    weekStart: 0,
     showWeekends: true,
     defaultEndDate: tomorrow,
     defaultStartDate: new Date(),

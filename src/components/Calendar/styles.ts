@@ -10,6 +10,8 @@ const CALENDAR_Z_INDEX = 9999;
 
 const CALENDAR_PADDING = 10;
 
+const CALENDAR_BACKGROUND_COLOR = '#ffffff';
+
 export const Wrapper = styled.div`
   width: 100%;
   position: relative;
@@ -21,9 +23,7 @@ export const Container = styled.div`
   top: ${CALENDAR_TOP_OFFSET}px;
   z-index: ${CALENDAR_Z_INDEX};
   border-radius: ${CALENDAR_BORDER_RADIUS}px;
-  border-color: ${CALENDAR_BORDER_COLOR};
-  border-width: ${CALENDAR_BORDER_WIDTH}px;
-  border-style: solid;
+  border: ${CALENDAR_BORDER_COLOR} ${CALENDAR_BORDER_WIDTH}px solid;
   padding: ${CALENDAR_PADDING}px;
-  background-color: #ffffff;
+  background-color: ${CALENDAR_BACKGROUND_COLOR};
 `;

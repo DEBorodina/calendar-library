@@ -1,3 +1,5 @@
+import { daysOfWeek } from '@/constants/daysOfWeek';
+
 import { CalendarHelper } from './CalendarHelper';
 import { MonthCalendarHelper } from './MonthCalendarHelper';
 
@@ -54,5 +56,10 @@ export class WeekCalendarHelper {
     const weekToDisplay = monthToDisplay.slice(firstWeekDay, lastWeekDay);
 
     return weekToDisplay;
+  };
+
+  static getWeekDaysNamesToDisplay = (weekStart: 0 | 1): string[] => {
+    if (weekStart === 1) return [...daysOfWeek.slice(1), daysOfWeek[0]];
+    else return daysOfWeek;
   };
 }
