@@ -4,6 +4,7 @@ import { CalendarHelper } from '@/utils/CalendarHelper';
 import { DateValidator } from '@/utils/DateValidator';
 
 import { DatePicker } from '../DatePicker';
+import { ErrorBoundary } from '../ErrorBoundary';
 import { Container, Label } from './styles';
 import { RangePickerProps } from './types';
 
@@ -48,7 +49,8 @@ export const RangePicker: React.FC<RangePickerProps> = ({
   };
 
   return (
-    <>
+    <ErrorBoundary>
+      {' '}
       <Label>{label}</Label>
       <Container>
         <DatePicker
@@ -70,6 +72,6 @@ export const RangePicker: React.FC<RangePickerProps> = ({
           {...settings}
         />
       </Container>
-    </>
+    </ErrorBoundary>
   );
 };

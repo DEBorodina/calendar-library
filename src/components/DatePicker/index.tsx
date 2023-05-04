@@ -8,6 +8,7 @@ import { DateValidator } from '@/utils/DateValidator';
 
 import { Calendar } from '../Calendar';
 import { DateInput } from '../DateInput';
+import { ErrorBoundary } from '../ErrorBoundary';
 import { Container, ErrorText, Label } from './styles';
 import { DatePickerProps } from './types';
 
@@ -53,29 +54,31 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   }, [defaultValue]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <Global />
-      <Container ref={popUp}>
-        <Label>{label}</Label>
-        <DateInput
-          value={value}
-          handleChange={handleChange}
-          handlePopUp={setShowPopup}
-          minDate={minDate}
-          maxDate={maxDate}
-          setErrors={setErrors}
-        />
-        <ErrorText>{errors}</ErrorText>
-        {showPopup && (
-          <Calendar
-            onChange={handleChange}
+    <ErrorBoundary>
+      <ThemeProvider theme={theme}>
+        <Global />
+        <Container ref={popUp}>
+          <Label>{label}</Label>
+          <DateInput
             value={value}
+            handleChange={handleChange}
+            handlePopUp={setShowPopup}
             minDate={minDate}
             maxDate={maxDate}
-            {...props}
+            setErrors={setErrors}
           />
-        )}
-      </Container>
-    </ThemeProvider>
+          <ErrorText>{errors}</ErrorText>
+          {showPopup && (
+            <Calendar
+              onChange={handleChange}
+              value={value}
+              minDate={minDate}
+              maxDate={maxDate}
+              {...props}
+            />
+          )}
+        </Container>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 };
