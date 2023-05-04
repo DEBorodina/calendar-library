@@ -20,9 +20,14 @@ export interface CalendarThemeProps {
   size?: 'small' | 'medium' | 'large';
 }
 
+export type BaseCalendarSettings = Omit<
+  CalendarSettings,
+  'endDate' & 'startDate'
+>;
+
 export interface DatePickerProps
   extends RangeCalendarProps,
-    CalendarSettings,
+    BaseCalendarSettings,
     CalendarThemeProps {
   defaultValue?: Date;
   onChange: (value: Date) => void;

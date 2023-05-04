@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
 
 import { RangePicker } from './index';
 
@@ -21,7 +22,7 @@ export const Primary: Story = {
       control: { type: 'radio' },
     },
     weekStart: {
-      options: ['monday', 'sunday'],
+      options: [0, 1],
       control: { type: 'radio' },
     },
   },
@@ -32,5 +33,20 @@ export const Primary: Story = {
     defaultEndDate: tomorrow,
     defaultStartDate: new Date(),
     onChange: (date) => console.log(date),
+  },
+  render: (args) => {
+    const defaultStartDate = new Date(args.defaultStartDate);
+    const defaultEndDate = new Date(args.defaultEndDate);
+    const minDate = new Date(args.minDate);
+    const maxDate = new Date(args.maxDate);
+    return (
+      <RangePicker
+        {...args}
+        defaultEndDate={defaultEndDate}
+        defaultStartDate={defaultStartDate}
+        minDate={minDate}
+        maxDate={maxDate}
+      />
+    );
   },
 };

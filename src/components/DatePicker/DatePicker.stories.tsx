@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
 
 import { DatePicker } from './index';
 
@@ -21,7 +22,21 @@ export const Primary: Story = {
       options: [1, 0],
       control: { type: 'radio' },
     },
+    defaultValue: {
+      control: { type: 'date' },
+    },
+    endDate: {
+      table: {
+        disable: true,
+      },
+    },
+    startDate: {
+      table: {
+        disable: true,
+      },
+    },
   },
+
   args: {
     type: 'week',
     weekStart: 1,
@@ -29,9 +44,24 @@ export const Primary: Story = {
     defaultValue: new Date(2023, 4, 5),
     minDate: new Date(2023, 4, 1),
     maxDate: new Date(2023, 4, 7),
+    holidays: [new Date(2023, 4, 9)],
     withToDoList: true,
     onChange: (date) => {
       console.log('onchange', date);
     },
+  },
+
+  render: (args) => {
+    const defaultValue = new Date(args.defaultValue);
+    const minDate = new Date(args.minDate);
+    const maxDate = new Date(args.maxDate);
+    return (
+      <DatePicker
+        {...args}
+        defaultValue={defaultValue}
+        minDate={minDate}
+        maxDate={maxDate}
+      />
+    );
   },
 };
