@@ -25,6 +25,6 @@
     "jsx": "react",
     "strictNullChecks": false
   },
-  "include": ["src/**/*", "cypress/**/*"],
+  "include": ["src/**/*", "test/**/*"],
   "extends": "./tsconfig.paths.json"
 }

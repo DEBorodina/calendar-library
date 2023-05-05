@@ -1,11 +1,11 @@
 import React, { useLayoutEffect, useState } from 'react';
 
+import { Icons } from '@/constants/icons/Icons';
 import { IconButton } from '@/styles/common';
 import { CalendarHelper } from '@/utils/CalendarHelper';
 import { DateFormatter } from '@/utils/DateFormatter';
 import { DateValidator } from '@/utils/DateValidator';
 
-import { Icons } from '../../constants/icons';
 import { Input, InputContainer } from './style';
 import { DateInputProps } from './types';
 
@@ -17,6 +17,7 @@ export const DateInput: React.FC<DateInputProps> = ({
   maxDate,
   setErrors,
 }) => {
+  console.log(Icons);
   const [inputValue, setInputValue] = useState(
     value ? DateFormatter.getInputValueFromDate(value) : ''
   );

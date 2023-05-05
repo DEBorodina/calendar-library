@@ -1,0 +1,15 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "jsdom",
+  "transform": {
+    "^.+\\.ts?$": "ts-jest"
+  },
+  "automock": false,
+  "setupFilesAfterEnv": [
+    "@testing-library/jest-dom/extend-expect",
+    "<rootDir>/test/setupJestMock.ts"
+  ],
+  "moduleNameMapper": {
+    "@/(.*)": "<rootDir>/src/"
+  }
+}

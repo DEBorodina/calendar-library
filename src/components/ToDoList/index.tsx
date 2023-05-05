@@ -55,7 +55,6 @@ export const ToDoList: React.FC<ToDoListProps> = ({ date, index }) => {
       />
     ));
   }, [todos]);
-
   return (
     <Container index={index}>
       <p>{`${date.getDate()} ${months[date.getMonth()]}`}</p>

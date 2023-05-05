@@ -1,8 +1,8 @@
 import React from 'react';
 
+import { Icons } from '@/constants/icons/Icons';
 import { IconButton } from '@/styles/common';
 
-import { Icons } from '../../constants/icons';
 import { Container, Title } from './styles';
 import { ControlPanelProps } from './types';
 

@@ -25,6 +25,16 @@ export const Primary: Story = {
       options: [0, 1],
       control: { type: 'radio' },
     },
+    endDate: {
+      table: {
+        disable: true,
+      },
+    },
+    startDate: {
+      table: {
+        disable: true,
+      },
+    },
   },
   args: {
     type: 'week',

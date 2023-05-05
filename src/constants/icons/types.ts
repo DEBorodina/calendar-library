@@ -1,3 +1,3 @@
-import { Icons } from '.';
+import { Icons } from './Icons';
 
 export type IconTypes = keyof typeof Icons;

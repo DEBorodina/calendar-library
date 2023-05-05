@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Icons } from '@/constants/icons';
+import { Icons } from '@/constants/icons/Icons';
 
 import {
   Button,
@@ -24,7 +24,6 @@ export const TodoItem: React.FC<TodoItemProps> = ({
   const handleIsDone = () => {
     toggleIsDone(id);
   };
-
   return (
     <Container>
       <Text>{text}</Text>
