@@ -24,7 +24,8 @@
     "allowSyntheticDefaultImports": true,
     "noEmit": true,
     "jsx": "react",
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "rootDir": "src"
   },
   "include": ["src/**/*", "jest/**/*"],
   "extends": "./tsconfig.paths.json"
