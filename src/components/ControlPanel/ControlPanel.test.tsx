@@ -6,17 +6,6 @@ import { defaultStyles } from '@/constants/styles';
 
 import { ControlPanel } from './index';
 
-jest.mock('@/constants/icons/Icons', () => {
-  return {
-    Icons: {
-      leftArrow: 'left arrow',
-      rightArrow: 'left arrow',
-      calendar: 'left arrow',
-      cross: 'left arrow',
-    },
-  };
-});
-
 describe('App todo form test', () => {
   it('Should display certain title', () => {
     render(
