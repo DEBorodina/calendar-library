@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/DEBorodina/calendar-library"
   },
-  "version": "2.0.0",
+  "version": "2.0.3",
   "description": "",
   "main": "dist/esm/index.js",
   "module": "dist/cjs/index.js",
@@ -51,7 +51,7 @@
     "@rollup/plugin-eslint": "^9.0.3",
     "@rollup/plugin-node-resolve": "^15.0.2",
     "@rollup/plugin-terser": "^0.3.0",
-    "@rollup/plugin-typescript": "^11.0.0",
+    "@rollup/plugin-typescript": "8.3.3",
     "@rollup/plugin-url": "^8.0.1",
     "@storybook/addon-essentials": "^7.0.6",
     "@storybook/addon-interactions": "^7.0.6",
