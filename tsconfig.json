@@ -17,6 +17,7 @@
     "module": "ESNext",
     "declaration": true,
     "declarationDir": "types",
+    "declarationMap": true,
     "sourceMap": false,
     "outDir": "dist",
     "moduleResolution": "node",
