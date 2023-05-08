@@ -59,7 +59,6 @@ export const DateInput: React.FC<DateInputProps> = ({
       setErrors('Date out of range');
       return;
     }
-
     handleChange(selectedDate);
   };
 

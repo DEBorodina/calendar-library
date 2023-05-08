@@ -12,7 +12,7 @@ export default meta;
 type Story = StoryObj<typeof RangePicker>;
 
 const tomorrow = new Date();
-tomorrow.setDate(new Date().getDate() + 1);
+tomorrow.setDate(new Date().getDate() + 3);
 
 export const Primary: Story = {
   name: 'Month Calendar',

@@ -15,7 +15,11 @@ export const Calendar: React.FC<CalendarProps> = ({
   const [calendar, setCalendar] = useState(
     DecoratorService.configCalendar(settings)
   );
-  const [panelState, setPanelState] = useState(calendar.getState());
+  const [panelState, setPanelState] = useState(calendar.getState(value));
+
+  useEffect(() => {
+    setPanelState(calendar.getState(value));
+  }, [value]);
 
   const {
     type,
@@ -59,7 +63,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   };
 
   return (
-    <Wrapper>
+    <Wrapper aria-label="calendar">
       <Container>
         <ControlPanel
           handlePrevious={handlePrevious}

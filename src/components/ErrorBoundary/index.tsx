@@ -23,7 +23,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
   public render() {
     if (this.state.hasError) {
-      return <h1>An error acquired</h1>;
+      return <h1 aria-label="errorboundary">An error acquired</h1>;
     }
 
     return this.props.children;
