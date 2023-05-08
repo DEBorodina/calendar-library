@@ -17,7 +17,6 @@ export const DateInput: React.FC<DateInputProps> = ({
   maxDate,
   setErrors,
 }) => {
-  console.log(Icons);
   const [inputValue, setInputValue] = useState(
     value ? DateFormatter.getInputValueFromDate(value) : ''
   );
@@ -29,7 +28,6 @@ export const DateInput: React.FC<DateInputProps> = ({
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setErrors('');
     let newValue = e.target.value;
-
     if (!newValue.match(/^[\d|/]*$/)) return;
 
     if (newValue.match(new RegExp(inputValue + '\\d'))) {
@@ -91,7 +89,9 @@ export const DateInput: React.FC<DateInputProps> = ({
         onChange={onChange}
         placeholder={'dd/mm/yyyy'}
       />
-      <IconButton onClick={onToggle}>{Icons.calendar}</IconButton>
+      <IconButton onClick={onToggle} aria-label={'toggle'}>
+        {Icons.calendar}
+      </IconButton>
     </InputContainer>
   );
 };

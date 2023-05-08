@@ -38,6 +38,18 @@ describe('App todo form test', () => {
     expect(day).toHaveStyleRule('cursor', 'pointer');
   });
 
+  it('Should call onChange function on call', () => {
+    monthProps.onClick = jest.fn();
+    render(
+      <ThemeProvider theme={defaultStyles}>
+        <MonthCalendarDay {...monthProps} />
+      </ThemeProvider>
+    );
+    const day = screen.getByLabelText(/cell/);
+    fireEvent.click(day);
+    expect(monthProps.onClick).toBeCalled();
+  });
+
   it('Should display current day with main color background', () => {
     monthProps.date = new Date();
     render(

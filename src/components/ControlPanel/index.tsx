@@ -12,8 +12,12 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
   title,
 }) => (
   <Container>
-    <IconButton onClick={handlePrevious}>{Icons.leftArrow}</IconButton>
+    <IconButton onClick={handlePrevious} aria-label={'previous'}>
+      {Icons.leftArrow}
+    </IconButton>
     <Title>{title}</Title>
-    <IconButton onClick={handleNext}>{Icons.rightArrow}</IconButton>
+    <IconButton onClick={handleNext} aria-label={'next'}>
+      {Icons.rightArrow}
+    </IconButton>
   </Container>
 );
