@@ -10,9 +10,8 @@ import { ToDo, ToDoListProps } from './types';
 
 export const ToDoList: React.FC<ToDoListProps> = ({ date, index }) => {
   const [todos, setTodos] = useState(
-    (getFromLocalStorage(`todos${date.getTime()}`) as ToDo[]) ?? []
+    (getFromLocalStorage(`todos${date.getTime()}`) ?? []) as ToDo[]
   );
-
   const addToDo = (todo: string) => {
     const newTodo = {
       id: Date.now(),
@@ -56,7 +55,7 @@ export const ToDoList: React.FC<ToDoListProps> = ({ date, index }) => {
     ));
   }, [todos]);
   return (
-    <Container index={index}>
+    <Container index={index} aria-label="todolist">
       <p>{`${date.getDate()} ${months[date.getMonth()]}`}</p>
       <AddToDoForm addToDo={addToDo} />
       {toDoList.length > 0 ? toDoList : 'No todos yet'}

@@ -24,4 +24,30 @@ describe('App todo form test', () => {
     );
     expect(screen.getByText('new todo')).toBeInTheDocument();
   });
+
+  it('Should display not done todo', () => {
+    const todo = {
+      id: 1,
+      isDone: false,
+      text: 'new todo',
+    };
+    render(
+      <TodoItem toggleIsDone={() => ({})} deleteToDo={() => ({})} todo={todo} />
+    );
+    expect(screen.getByRole('button', { name: /done/i })).toBeInTheDocument();
+  });
+
+  it('Should display done todo', () => {
+    const todo = {
+      id: 1,
+      isDone: true,
+      text: 'new todo',
+    };
+    render(
+      <TodoItem toggleIsDone={() => ({})} deleteToDo={() => ({})} todo={todo} />
+    );
+    expect(
+      screen.getByRole('button', { name: /done-with-mark/i })
+    ).toBeInTheDocument();
+  });
 });

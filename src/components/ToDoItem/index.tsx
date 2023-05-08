@@ -29,11 +29,16 @@ export const TodoItem: React.FC<TodoItemProps> = ({
       <Text>{text}</Text>
       <ButtonContainer>
         {isDone ? (
-          <DoneButtonWithMark onClick={handleIsDone}></DoneButtonWithMark>
+          <DoneButtonWithMark
+            onClick={handleIsDone}
+            aria-label="done-with-mark"
+          ></DoneButtonWithMark>
         ) : (
-          <DoneButton onClick={handleIsDone}></DoneButton>
+          <DoneButton onClick={handleIsDone} aria-label="done"></DoneButton>
         )}
-        <Button onClick={handleDelete}>{Icons.cross}</Button>
+        <Button onClick={handleDelete} aria-label="delete">
+          {Icons.cross}
+        </Button>
       </ButtonContainer>
     </Container>
   );

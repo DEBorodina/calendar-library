@@ -79,6 +79,7 @@ export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
   return (
     <Wrapper ref={popUp} onMouseEnter={onMouseEnter} onMouseLeave={onMouseOver}>
       <Cell
+        aria-label="cell"
         onClick={handleClick}
         isSelected={isSelected}
         isCurrent={isCurrent}
