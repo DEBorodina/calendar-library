@@ -25,8 +25,6 @@ npm i react-typescript-date-picker
  holidays?: Date[];
  minDate?: Date;
  maxDate?: Date;
- endDate?: Date;
- startDate?: Date;
  withToDoList?: boolean;
  label?: string;
  mainColor?: string;
