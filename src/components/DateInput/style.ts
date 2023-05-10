@@ -24,7 +24,7 @@ export const InputContainer = styled.div`
 `;
 
 export const Input = styled.input`
-  width: 70%;
+  width: 100%;
   outline: none;
   border: none;
   color: ${INPUT_TEXT_COLOR};

@@ -38,6 +38,10 @@ export const Text = styled.p`
   width: 70%;
 `;
 
+export const CrossedText = styled(Text)`
+  text-decoration: line-through;
+`;
+
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
