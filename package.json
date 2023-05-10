@@ -28,8 +28,7 @@
     "automock": false,
     "setupFilesAfterEnv": [
       "@testing-library/jest-dom/extend-expect",
-      "<rootDir>/test/setupJestMock.ts",
-      "<rootDir>/jest/browserMocks.ts"
+      "<rootDir>/test/setupJestMock.ts"
     ],
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/src/$1"
