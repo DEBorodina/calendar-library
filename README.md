@@ -1,7 +1,7 @@
 # Date picker
 
 Simple library with date picker and range picker components.
-[Explore on storybook](https://calendar-library-storybook.vercel.app/?path=/story/date-picker--primary)
+[Explore on storybook](https://calendar-library-storybook-8l8237god-deborodina.vercel.app/?path=/story/date-picker--primary)
 
 ## Instalation
 
