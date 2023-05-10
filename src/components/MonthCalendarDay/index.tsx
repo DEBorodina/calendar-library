@@ -3,9 +3,11 @@ import React from 'react';
 import { usePopup } from '@/hooks';
 import { CalendarHelper } from '@/utils/CalendarHelper';
 import { DateValidator } from '@/utils/DateValidator';
+import { getFromLocalStorage } from '@/utils/localStorage';
 
 import { ToDoList } from '../ToDoList';
-import { Cell, Wrapper } from './styles';
+import { ToDo } from '../ToDoList/types';
+import { Cell, Dot, Wrapper } from './styles';
 import { MonthCalendarDayProps } from './types';
 
 export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
@@ -64,6 +66,12 @@ export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
       isInRange = true;
   }
 
+  let hasTodos = false;
+  const todos = getFromLocalStorage(`todos${date.getTime()}`) as ToDo[];
+  if (todos && todos.length > 0) {
+    hasTodos = true;
+  }
+
   const handleClick = () => {
     if (isInValidRange) onClick(date);
   };
@@ -91,6 +99,7 @@ export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
         isEndValue={isEndValue}
         isStartValue={isStartValue}
       >
+        {hasTodos && <Dot>.</Dot>}
         {date.getDate()}
       </Cell>
       {showPopup && <ToDoList date={date} index={index} />}

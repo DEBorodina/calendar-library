@@ -8,6 +8,8 @@ const DATE_COLOR = '#333333';
 const SELECTED_DATE_COLOR = '#FFFFFF';
 
 const CURRENT_DATE_BACKGROUND_COLOR = '#F1F1F1';
+const DOT_SIZE = 20;
+const DOT_BOTTOM_OFFSET = 7;
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -15,6 +17,14 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const Dot = styled.div`
+  position: absolute;
+  opacity: 0.5;
+  font-color: inherit;
+  font-size: ${DOT_SIZE}px;
+  bottom: calc(90% - ${DOT_BOTTOM_OFFSET}px);
 `;
 
 export const Cell = styled.div<CellProps>`
