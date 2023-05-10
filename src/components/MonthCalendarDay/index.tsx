@@ -57,7 +57,7 @@ export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
   return (
     <Wrapper ref={popUp} onMouseEnter={onMouseEnter} onMouseLeave={onMouseOver}>
       <Cell aria-label="cell" onClick={handleClick} {...settings}>
-        {settings.hasTodos && <Dot>.</Dot>}
+        {settings.hasTodos && withToDoList && <Dot>.</Dot>}
         {date.getDate()}
       </Cell>
       {showPopup && <ToDoList date={date} index={index} />}
