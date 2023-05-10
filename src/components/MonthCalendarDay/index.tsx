@@ -34,7 +34,9 @@ export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
   const isInValidRange = DateValidator.isInValidRange(date, minDate, maxDate);
 
   let isWeekend = false;
-  if (showWeekends) isWeekend = date.getDay() === 0 || date.getDay() === 6;
+  if (showWeekends) {
+    isWeekend = date.getDay() === 0 || date.getDay() === 6;
+  }
 
   let isHoliday = false;
   if (holidays) {
@@ -48,22 +50,30 @@ export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
   let isStartValue = false;
   let isInRange = false;
 
-  if (endDate && CalendarHelper.isDatesEqual(endDate, date)) isEndValue = true;
-  if (isSelected && startDate) isEndValue = true;
+  if (endDate && CalendarHelper.isDatesEqual(endDate, date)) {
+    isEndValue = true;
+  }
+  if (isSelected && startDate) {
+    isEndValue = true;
+  }
 
-  if (startDate && CalendarHelper.isDatesEqual(startDate, date))
+  if (startDate && CalendarHelper.isDatesEqual(startDate, date)) {
     isStartValue = true;
-  if (isSelected && endDate) isStartValue = true;
-
+  }
+  if (isSelected && endDate) {
+    isStartValue = true;
+  }
   if (!isSelected && !isStartValue && !isEndValue && selectedDate) {
     if (
       startDate &&
       DateValidator.isInValidRange(date, startDate, selectedDate)
-    )
+    ) {
       isInRange = true;
+    }
 
-    if (endDate && DateValidator.isInValidRange(date, selectedDate, endDate))
+    if (endDate && DateValidator.isInValidRange(date, selectedDate, endDate)) {
       isInRange = true;
+    }
   }
 
   let hasTodos = false;
@@ -73,15 +83,21 @@ export const MonthCalendarDay: React.FC<MonthCalendarDayProps> = ({
   }
 
   const handleClick = () => {
-    if (isInValidRange) onClick(date);
+    if (isInValidRange) {
+      onClick(date);
+    }
   };
 
   const onMouseEnter = () => {
-    if (withToDoList) setShowPopup(true);
+    if (withToDoList) {
+      setShowPopup(true);
+    }
   };
 
   const onMouseOver = () => {
-    if (withToDoList) setShowPopup(false);
+    if (withToDoList) {
+      setShowPopup(false);
+    }
   };
 
   return (

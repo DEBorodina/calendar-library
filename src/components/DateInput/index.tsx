@@ -28,7 +28,9 @@ export const DateInput: React.FC<DateInputProps> = ({
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setErrors('');
     let newValue = e.target.value;
-    if (!newValue.match(/^[\d|/]*$/)) return;
+    if (!newValue.match(/^[\d|/]*$/)) {
+      return;
+    }
 
     if (newValue.match(new RegExp(inputValue + '\\d'))) {
       if (newValue.length == 2 || newValue.length == 5) {

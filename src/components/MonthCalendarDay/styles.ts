@@ -54,10 +54,14 @@ export const Cell = styled.div<CellProps>`
       props.isInRange ||
       props.isEndValue ||
       props.isStartValue
-    )
+    ) {
       return props.theme.mainColor;
-    if (props.isCurrent) return CURRENT_DATE_BACKGROUND_COLOR;
-    else return 'transparent';
+    }
+    if (props.isCurrent) {
+      return CURRENT_DATE_BACKGROUND_COLOR;
+    } else {
+      return 'transparent';
+    }
   }};
 
   color: ${(props) => {
@@ -66,19 +70,31 @@ export const Cell = styled.div<CellProps>`
       props.isInRange ||
       props.isEndValue ||
       props.isStartValue
-    )
+    ) {
       return SELECTED_DATE_COLOR;
+    }
 
-    if (props.isHoliday) return props.theme.holidayColor;
-    if (props.isWeekend) return props.theme.mainColor;
-    else return DATE_COLOR;
+    if (props.isHoliday) {
+      return props.theme.holidayColor;
+    }
+    if (props.isWeekend) {
+      return props.theme.mainColor;
+    } else {
+      return DATE_COLOR;
+    }
   }};
 
   opacity: ${(props) => {
     let opacity = 1;
-    if (!props.isSelectedMonth) opacity -= 0.5;
-    if (!props.isInValidRange) opacity -= 0.3;
-    if (props.isInRange) opacity -= 0.4;
+    if (!props.isSelectedMonth) {
+      opacity -= 0.5;
+    }
+    if (!props.isInValidRange) {
+      opacity -= 0.3;
+    }
+    if (props.isInRange) {
+      opacity -= 0.4;
+    }
     return opacity;
   }};
 `;

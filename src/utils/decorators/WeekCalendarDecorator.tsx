@@ -8,7 +8,9 @@ export const weekCalendarDecorator = (calendar: ICalendar) => {
 
   const initialGetState = calendar.getState;
   calendar.getState = function (value?: Date): CalendarState {
-    if (!value) value = new Date(Date.now());
+    if (!value) {
+      value = new Date(Date.now());
+    }
 
     const state = {
       ...initialGetState(value),
