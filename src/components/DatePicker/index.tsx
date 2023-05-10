@@ -41,7 +41,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
       errorColor: errorColor ? errorColor : defaultStyles.errorColor,
       size: size ? sizes[size] : defaultStyles.size,
     };
-    return theme;
+    return { ...defaultStyles, ...theme };
   }, [mainColor, holidayColor, size, errorColor]);
 
   const handleChange = (date: Date) => {
