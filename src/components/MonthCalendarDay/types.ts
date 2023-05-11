@@ -24,3 +24,7 @@ export interface CellProps {
   isEndValue: boolean;
   isStartValue: boolean;
 }
+
+export interface CellSettingsProps extends CellProps {
+  hasTodos: boolean;
+}

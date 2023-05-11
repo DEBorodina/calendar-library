@@ -8,4 +8,5 @@ export default createGlobalStyle`
     list-style: none;
     text-decoration: none;
     font-family: 'Plus Jakarta Sans', sans-serif;
+}
 `;

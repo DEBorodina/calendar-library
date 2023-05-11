@@ -3,6 +3,11 @@
 Simple library with date picker and range picker components.
 [Explore on storybook](https://calendar-library-storybook-8l8237god-deborodina.vercel.app/?path=/story/date-picker--primary)
 
+# View
+
+![calendar with todolist](./screenshots/calendar-todolist.png)
+![month calendar](./screenshots/month-calendar.png)
+
 ## Instalation
 
 ```

@@ -27,6 +27,6 @@
     "strictNullChecks": false,
     "rootDir": "src"
   },
-  "include": ["src/**/*", "jest/**/*"],
+  "include": ["src/**/*", "test/**/*"],
   "extends": "./tsconfig.paths.json"
 }

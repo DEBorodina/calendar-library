@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-const TEXT_COLOR = '#333333';
-const LABEL_FONT_SIZE = 16;
-const LABEL_MARGIN_BOTTOM = 10;
-
 export const Container = styled.div`
   position: relative;
   display: flex;
@@ -11,7 +7,7 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.p`
-  font-size: ${LABEL_FONT_SIZE}px;
-  color: ${TEXT_COLOR};
-  margin-bottom: ${LABEL_MARGIN_BOTTOM}px;
+  font-size: ${(props) => props.theme.BIG_LABEL_FONT_SIZE}px;
+  color: ${(props) => props.theme.FONT_COLOR};
+  margin-bottom: ${(props) => props.theme.BIG_LABEL_MARGIN_BOTTOM}px;
 `;
