@@ -4,7 +4,9 @@ export class CalendarHelper {
   };
 
   static isDatesEqual = (date1: Date, date2: Date): boolean => {
-    if (!date1 || !date2) return false;
+    if (!date1 || !date2) {
+      return false;
+    }
     if (date1.getDate() !== date2.getDate()) {
       return false;
     }
@@ -18,7 +20,9 @@ export class CalendarHelper {
   };
 
   static isDateLess = (lessDate: Date, biggerDate: Date): boolean => {
-    if (!lessDate || !biggerDate) return true;
+    if (!lessDate || !biggerDate) {
+      return true;
+    }
     lessDate = new Date(
       lessDate.getFullYear(),
       lessDate.getMonth(),

@@ -65,21 +65,41 @@ export class DecoratorService {
 
     const calendar: ICalendar = new BaseCalendar();
 
-    if (type === 'week') DecoratorService.weekCalendar(calendar);
-    if (type === 'day') DecoratorService.dayCalendar(calendar);
+    if (type === 'week') {
+      DecoratorService.weekCalendar(calendar);
+    }
+    if (type === 'day') {
+      DecoratorService.dayCalendar(calendar);
+    }
 
-    if (weekStart === 1) DecoratorService.withWeekStartMonday(calendar);
+    if (weekStart === 1) {
+      DecoratorService.withWeekStartMonday(calendar);
+    }
 
-    if (showWeekends) DecoratorService.withShowWeekends(calendar);
-    if (holidays) DecoratorService.withShowHolidays(calendar, holidays);
+    if (showWeekends) {
+      DecoratorService.withShowWeekends(calendar);
+    }
+    if (holidays) {
+      DecoratorService.withShowHolidays(calendar, holidays);
+    }
 
-    if (minDate) DecoratorService.withMinDate(calendar, minDate);
-    if (maxDate) DecoratorService.withMaxDate(calendar, maxDate);
+    if (minDate) {
+      DecoratorService.withMinDate(calendar, minDate);
+    }
+    if (maxDate) {
+      DecoratorService.withMaxDate(calendar, maxDate);
+    }
 
-    if (endDate) DecoratorService.withEndDate(calendar, endDate);
-    if (startDate) DecoratorService.withStartDate(calendar, startDate);
+    if (endDate) {
+      DecoratorService.withEndDate(calendar, endDate);
+    }
+    if (startDate) {
+      DecoratorService.withStartDate(calendar, startDate);
+    }
 
-    if (withToDoList) DecoratorService.withToDoList(calendar);
+    if (withToDoList) {
+      DecoratorService.withToDoList(calendar);
+    }
     return calendar;
   };
 }

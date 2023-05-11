@@ -29,8 +29,11 @@ export class MonthCalendarHelper {
       month,
       1
     ).getDay();
-    if (currentMonthFirstDay != 0) currentMonthFirstDay -= weekStart;
-    else currentMonthFirstDay = weekStart ? 6 : currentMonthFirstDay;
+    if (currentMonthFirstDay != 0) {
+      currentMonthFirstDay -= weekStart;
+    } else {
+      currentMonthFirstDay = weekStart ? 6 : currentMonthFirstDay;
+    }
 
     const dateCells: Date[] = [];
 
@@ -66,8 +69,9 @@ export class MonthCalendarHelper {
 
     const amountOfDaysInLastWeek = totalCellsAmount % 7;
 
-    if (amountOfDaysInLastWeek === 0) return dateCells;
-
+    if (amountOfDaysInLastWeek === 0) {
+      return dateCells;
+    }
     const amountOfDaysToAdd = 7 - amountOfDaysInLastWeek;
 
     const days = Array(amountOfDaysToAdd)

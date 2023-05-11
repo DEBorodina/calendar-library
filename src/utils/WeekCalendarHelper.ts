@@ -59,7 +59,10 @@ export class WeekCalendarHelper {
   };
 
   static getWeekDaysNamesToDisplay = (weekStart: 0 | 1): string[] => {
-    if (weekStart === 1) return [...daysOfWeek.slice(1), daysOfWeek[0]];
-    else return daysOfWeek;
+    if (weekStart === 1) {
+      return [...daysOfWeek.slice(1), daysOfWeek[0]];
+    } else {
+      return daysOfWeek;
+    }
   };
 }

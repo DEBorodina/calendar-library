@@ -36,6 +36,7 @@ module.exports = [
     external: ['react', 'styled-components'],
     plugins: [
       typescript({
+        compilerOptions: { declaration: true },
         tsconfig: './tsconfig.json',
         exclude: ['**/*.stories.tsx'],
       }),

@@ -17,6 +17,20 @@ export const Calendar: React.FC<CalendarProps> = ({
   );
   const [panelState, setPanelState] = useState(calendar.getState(value));
 
+  const CalendarGrid = useMemo(() => {
+    return calendar.getGrid();
+  }, [calendar]);
+
+  const handlePrevious = () => {
+    const newState = calendar.handlePrevious(panelState);
+    setPanelState(newState);
+  };
+
+  const handleNext = () => {
+    const newState = calendar.handleNext(panelState);
+    setPanelState(newState);
+  };
+
   useEffect(() => {
     setPanelState(calendar.getState(value));
   }, [value]);
@@ -47,20 +61,6 @@ export const Calendar: React.FC<CalendarProps> = ({
     startDate,
     withToDoList,
   ]);
-
-  const CalendarGrid = useMemo(() => {
-    return calendar.getGrid();
-  }, [calendar]);
-
-  const handlePrevious = () => {
-    const newState = calendar.handlePrevious(panelState);
-    setPanelState(newState);
-  };
-
-  const handleNext = () => {
-    const newState = calendar.handleNext(panelState);
-    setPanelState(newState);
-  };
 
   return (
     <Wrapper aria-label="calendar">

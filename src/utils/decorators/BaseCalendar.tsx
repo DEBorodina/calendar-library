@@ -16,7 +16,9 @@ export class BaseCalendar implements ICalendar {
   public withToDoList = false;
 
   public getState(value?: Date): CalendarState {
-    if (!value) value = new Date(Date.now());
+    if (!value) {
+      value = new Date(Date.now());
+    }
     const state = {
       panelYear: value.getFullYear(),
       panelMonth: value.getMonth(),

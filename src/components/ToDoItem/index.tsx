@@ -6,6 +6,7 @@ import {
   Button,
   ButtonContainer,
   Container,
+  CrossedText,
   DoneButton,
   DoneButtonWithMark,
   Text,
@@ -26,7 +27,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({
   };
   return (
     <Container>
-      <Text>{text}</Text>
+      {isDone ? <CrossedText>{text}</CrossedText> : <Text>{text}</Text>}
       <ButtonContainer>
         {isDone ? (
           <DoneButtonWithMark
