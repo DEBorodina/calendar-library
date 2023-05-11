@@ -1922,7 +1922,7 @@
     smob "^0.0.6"
     terser "^5.15.1"
 
-"@rollup/plugin-typescript@^11.0.0":
+"@rollup/plugin-typescript@^11.1.0":
   version "11.1.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-typescript/-/plugin-typescript-11.1.0.tgz#4dd2a98475a791200d3e4dd1b8234073ad96c535"
   integrity sha512-86flrfE+bSHB69znnTV6kVjkncs2LBMhcTCyxWgRxLyfXfQrxg4UwlAqENnjrrxnSNS/XKCDJCl8EkdFJVHOxw==
